@@ -1,0 +1,40 @@
+Index: local/.htaccess
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- local/.htaccess	(revision 4f26442cd1380da14a54f8179548f37d058162d6)
++++ local/.htaccess	(revision )
+@@ -1,0 +1,0 @@
+Index: docs/install/iis7/web.config
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- docs/install/iis7/web.config	(revision 4f26442cd1380da14a54f8179548f37d058162d6)
++++ docs/install/iis7/web.config	(revision )
+@@ -1,0 +1,0 @@
+Index: docs/install/lighttpd/lighttpd.conf
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- docs/install/lighttpd/lighttpd.conf	(revision 4f26442cd1380da14a54f8179548f37d058162d6)
++++ docs/install/lighttpd/lighttpd.conf	(revision )
+@@ -1,0 +1,0 @@
+Index: nbproject/project.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- nbproject/project.xml	(revision 4f26442cd1380da14a54f8179548f37d058162d6)
++++ nbproject/project.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: local/reports/leave_distribution.ini
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- local/reports/leave_distribution.ini	(revision 4f26442cd1380da14a54f8179548f37d058162d6)
++++ local/reports/leave_distribution.ini	(revision )
+@@ -1,0 +1,0 @@

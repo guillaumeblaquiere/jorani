@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dfd78bc1-8c72-4b18-a7ac-7fa59e56220e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.github/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/.github/CONTRIBUTING.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE.md" afterPath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/config.php" afterPath="$PROJECT_DIR$/application/config/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/ics.php" afterPath="$PROJECT_DIR$/application/controllers/ics.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/leaves.php" afterPath="$PROJECT_DIR$/application/controllers/leaves.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/pages.php" afterPath="$PROJECT_DIR$/application/controllers/pages.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/users.php" afterPath="$PROJECT_DIR$/application/controllers/users.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/chinese/email_lang.php" afterPath="$PROJECT_DIR$/application/language/chinese/email_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/dutch/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/dutch/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/dutch/global_lang.php" afterPath="$PROJECT_DIR$/application/language/dutch/global_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/dutch/users_lang.php" afterPath="$PROJECT_DIR$/application/language/dutch/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/emails.pot" afterPath="$PROJECT_DIR$/application/language/emails.pot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/english/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/english/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english/users_lang.php" afterPath="$PROJECT_DIR$/application/language/english/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english_gb/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/english_gb/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english_gb/menu_lang.php" afterPath="$PROJECT_DIR$/application/language/english_gb/menu_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/french/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/french/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/french/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/french/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/french/users_lang.php" afterPath="$PROJECT_DIR$/application/language/french/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/german/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/german/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/german/global_lang.php" afterPath="$PROJECT_DIR$/application/language/german/global_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/german/users_lang.php" afterPath="$PROJECT_DIR$/application/language/german/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/italian/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/italian/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/italian/global_lang.php" afterPath="$PROJECT_DIR$/application/language/italian/global_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/italian/users_lang.php" afterPath="$PROJECT_DIR$/application/language/italian/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/khmer/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/khmer/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/khmer/global_lang.php" afterPath="$PROJECT_DIR$/application/language/khmer/global_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/khmer/users_lang.php" afterPath="$PROJECT_DIR$/application/language/khmer/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/pages.pot" afterPath="$PROJECT_DIR$/application/language/pages.pot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/persian/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/persian/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/persian/global_lang.php" afterPath="$PROJECT_DIR$/application/language/persian/global_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/persian/users_lang.php" afterPath="$PROJECT_DIR$/application/language/persian/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/russian/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/russian/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/russian/global_lang.php" afterPath="$PROJECT_DIR$/application/language/russian/global_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/russian/users_lang.php" afterPath="$PROJECT_DIR$/application/language/russian/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/spanish/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/spanish/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/spanish/global_lang.php" afterPath="$PROJECT_DIR$/application/language/spanish/global_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/spanish/users_lang.php" afterPath="$PROJECT_DIR$/application/language/spanish/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/turkish/email_lang.php" afterPath="$PROJECT_DIR$/application/language/turkish/email_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/ukrainian/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/ukrainian/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/ukrainian/global_lang.php" afterPath="$PROJECT_DIR$/application/language/ukrainian/global_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/ukrainian/users_lang.php" afterPath="$PROJECT_DIR$/application/language/ukrainian/users_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/vietnamese/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/vietnamese/admin_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/vietnamese/email_lang.php" afterPath="$PROJECT_DIR$/application/language/vietnamese/email_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/history_model.php" afterPath="$PROJECT_DIR$/application/models/history_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/leaves_model.php" afterPath="$PROJECT_DIR$/application/models/leaves_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/third_party/SAML/index.html" afterPath="$PROJECT_DIR$/application/third_party/SAML/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/third_party/SAML/lib/Saml2/schemas/sstc-saml-metadata-ui-v1.0.xsd" afterPath="$PROJECT_DIR$/application/third_party/SAML/lib/Saml2/schemas/sstc-saml-metadata-ui-v1.0.xsd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/diagnostic.php" afterPath="$PROJECT_DIR$/application/views/admin/diagnostic.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/leaves/index.php" afterPath="$PROJECT_DIR$/application/views/leaves/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/menu/index.php" afterPath="$PROJECT_DIR$/application/views/menu/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/session/failure.php" afterPath="$PROJECT_DIR$/application/views/session/failure.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/session/login.php" afterPath="$PROJECT_DIR$/application/views/session/login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/users/myprofile.php" afterPath="$PROJECT_DIR$/application/views/users/myprofile.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/agenda-views.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/agenda-views.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/background-events.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/background-events.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/default.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/default.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/external-dragging.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/external-dragging.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/languages.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/languages.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/selectable.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/selectable.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/timezones.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/timezones.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/install/README.md" afterPath="$PROJECT_DIR$/docs/install/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/install/iis7/web.config" afterPath="$PROJECT_DIR$/docs/install/iis7/web.config" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/install/lighttpd/lighttpd.conf" afterPath="$PROJECT_DIR$/docs/install/lighttpd/lighttpd.conf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local/.htaccess" afterPath="$PROJECT_DIR$/local/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local/reports/leave_distribution.ini" afterPath="$PROJECT_DIR$/local/reports/leave_distribution.ini" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/project.xml" afterPath="$PROJECT_DIR$/nbproject/project.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.php" afterPath="$PROJECT_DIR$/requirements.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testldap.php" afterPath="$PROJECT_DIR$/testldap.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testmail.php" afterPath="$PROJECT_DIR$/testmail.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testoauth2.php" afterPath="$PROJECT_DIR$/testoauth2.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/rest/JoraniAPI.php" afterPath="$PROJECT_DIR$/tests/rest/JoraniAPI.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testssl.php" afterPath="$PROJECT_DIR$/testssl.php" />
+    </list>
+    <ignored path="jorani.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="C:\Projets\dev\jorani\.idea\shelf/" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="jorani" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/application/config/routes.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true">
+    <include_path>
+      <path value="C:\apps\xampp\php\PEAR" />
+    </include_path>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jorani" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jorani" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jorani" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jorani" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jorani" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jorani" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jorani" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="C:/Program Files (x86)/PHP" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dfd78bc1-8c72-4b18-a7ac-7fa59e56220e" name="Default" comment="" />
+      <created>1471527957620</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1471527957620</updated>
+      <workItem from="1471527959880" duration="804000" />
+    </task>
+    <task id="LOCAL-00001">
+      <created>1471528332054</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1471528332054</updated>
+    </task>
+    <task id="LOCAL-00002" summary="no change file, git is crazy!">
+      <created>1471528474131</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1471528474131</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="804000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25266525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3300866" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="no change file, git is crazy!" />
+    <option name="LAST_COMMIT_MESSAGE" value="no change file, git is crazy!" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
