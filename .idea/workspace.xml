@@ -2,83 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfd78bc1-8c72-4b18-a7ac-7fa59e56220e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.github/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/.github/CONTRIBUTING.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE.md" afterPath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.htaccess" afterPath="$PROJECT_DIR$/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/config.php" afterPath="$PROJECT_DIR$/application/config/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/ics.php" afterPath="$PROJECT_DIR$/application/controllers/ics.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/leaves.php" afterPath="$PROJECT_DIR$/application/controllers/leaves.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/pages.php" afterPath="$PROJECT_DIR$/application/controllers/pages.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/users.php" afterPath="$PROJECT_DIR$/application/controllers/users.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/chinese/email_lang.php" afterPath="$PROJECT_DIR$/application/language/chinese/email_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/dutch/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/dutch/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/dutch/global_lang.php" afterPath="$PROJECT_DIR$/application/language/dutch/global_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/dutch/users_lang.php" afterPath="$PROJECT_DIR$/application/language/dutch/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/emails.pot" afterPath="$PROJECT_DIR$/application/language/emails.pot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/english/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/english/leaves_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english/users_lang.php" afterPath="$PROJECT_DIR$/application/language/english/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english_gb/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/english_gb/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/english_gb/menu_lang.php" afterPath="$PROJECT_DIR$/application/language/english_gb/menu_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/french/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/french/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/french/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/french/leaves_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/french/users_lang.php" afterPath="$PROJECT_DIR$/application/language/french/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/german/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/german/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/german/global_lang.php" afterPath="$PROJECT_DIR$/application/language/german/global_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/german/users_lang.php" afterPath="$PROJECT_DIR$/application/language/german/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/italian/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/italian/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/italian/global_lang.php" afterPath="$PROJECT_DIR$/application/language/italian/global_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/italian/users_lang.php" afterPath="$PROJECT_DIR$/application/language/italian/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/khmer/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/khmer/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/khmer/global_lang.php" afterPath="$PROJECT_DIR$/application/language/khmer/global_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/khmer/users_lang.php" afterPath="$PROJECT_DIR$/application/language/khmer/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/pages.pot" afterPath="$PROJECT_DIR$/application/language/pages.pot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/persian/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/persian/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/persian/global_lang.php" afterPath="$PROJECT_DIR$/application/language/persian/global_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/persian/users_lang.php" afterPath="$PROJECT_DIR$/application/language/persian/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/russian/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/russian/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/russian/global_lang.php" afterPath="$PROJECT_DIR$/application/language/russian/global_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/russian/users_lang.php" afterPath="$PROJECT_DIR$/application/language/russian/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/spanish/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/spanish/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/spanish/global_lang.php" afterPath="$PROJECT_DIR$/application/language/spanish/global_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/spanish/users_lang.php" afterPath="$PROJECT_DIR$/application/language/spanish/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/turkish/email_lang.php" afterPath="$PROJECT_DIR$/application/language/turkish/email_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/ukrainian/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/ukrainian/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/ukrainian/global_lang.php" afterPath="$PROJECT_DIR$/application/language/ukrainian/global_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/ukrainian/users_lang.php" afterPath="$PROJECT_DIR$/application/language/ukrainian/users_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/vietnamese/admin_lang.php" afterPath="$PROJECT_DIR$/application/language/vietnamese/admin_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/vietnamese/email_lang.php" afterPath="$PROJECT_DIR$/application/language/vietnamese/email_lang.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/history_model.php" afterPath="$PROJECT_DIR$/application/models/history_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/leaves_model.php" afterPath="$PROJECT_DIR$/application/models/leaves_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/third_party/SAML/index.html" afterPath="$PROJECT_DIR$/application/third_party/SAML/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/third_party/SAML/lib/Saml2/schemas/sstc-saml-metadata-ui-v1.0.xsd" afterPath="$PROJECT_DIR$/application/third_party/SAML/lib/Saml2/schemas/sstc-saml-metadata-ui-v1.0.xsd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/diagnostic.php" afterPath="$PROJECT_DIR$/application/views/admin/diagnostic.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/leaves/index.php" afterPath="$PROJECT_DIR$/application/views/leaves/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/menu/index.php" afterPath="$PROJECT_DIR$/application/views/menu/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/session/failure.php" afterPath="$PROJECT_DIR$/application/views/session/failure.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/session/login.php" afterPath="$PROJECT_DIR$/application/views/session/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/users/myprofile.php" afterPath="$PROJECT_DIR$/application/views/users/myprofile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/agenda-views.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/agenda-views.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/background-events.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/background-events.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/default.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/default.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/external-dragging.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/external-dragging.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/languages.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/languages.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/selectable.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/selectable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/timezones.html" afterPath="$PROJECT_DIR$/assets/fullcalendar-2.8.0/demos/timezones.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/install/README.md" afterPath="$PROJECT_DIR$/docs/install/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/install/iis7/web.config" afterPath="$PROJECT_DIR$/docs/install/iis7/web.config" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/install/lighttpd/lighttpd.conf" afterPath="$PROJECT_DIR$/docs/install/lighttpd/lighttpd.conf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local/.htaccess" afterPath="$PROJECT_DIR$/local/.htaccess" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local/reports/leave_distribution.ini" afterPath="$PROJECT_DIR$/local/reports/leave_distribution.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/project.xml" afterPath="$PROJECT_DIR$/nbproject/project.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.php" afterPath="$PROJECT_DIR$/requirements.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testldap.php" afterPath="$PROJECT_DIR$/testldap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testmail.php" afterPath="$PROJECT_DIR$/testmail.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testoauth2.php" afterPath="$PROJECT_DIR$/testoauth2.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/rest/JoraniAPI.php" afterPath="$PROJECT_DIR$/tests/rest/JoraniAPI.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testssl.php" afterPath="$PROJECT_DIR$/testssl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/german/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/german/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/italian/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/italian/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/khmer/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/khmer/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/persian/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/persian/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/russian/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/russian/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/spanish/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/spanish/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/turkish/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/turkish/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/ukrainian/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/ukrainian/leaves_lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/language/vietnamese/leaves_lang.php" afterPath="$PROJECT_DIR$/application/language/vietnamese/leaves_lang.php" />
     </list>
     <ignored path="jorani.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,8 +37,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/config/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -260,7 +193,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471527957620</updated>
-      <workItem from="1471527959880" duration="804000" />
+      <workItem from="1471527959880" duration="861000" />
     </task>
     <task id="LOCAL-00001">
       <created>1471528332054</created>
@@ -280,7 +213,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="804000" />
+    <option name="totallyTimeSpent" value="861000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -293,7 +226,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25266525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -303,7 +236,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3300866" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -339,8 +272,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/application/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="184" column="0" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+        <state relative-caret-position="153">
+          <caret line="183" column="0" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
           <folding />
         </state>
       </provider>
