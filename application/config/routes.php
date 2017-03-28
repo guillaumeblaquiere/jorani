@@ -178,6 +178,7 @@ $route['leaves/counters/(:num)'] = 'leaves/counters/$1';
 $route['leaves/export'] = 'leaves/export';
 $route['leaves/create'] = 'leaves/create';
 $route['leaves/edit/(:num)'] = 'leaves/edit/$1';
+$route['leaves/printPdf/(:num)'] = 'leaves/printPdf/$1';
 $route['leaves/update'] = 'leaves/update';
 $route['leaves/delete/(:num)'] = 'leaves/delete/$1';
 $route['leaves/(:num)/history'] = 'leaves/history/$1';

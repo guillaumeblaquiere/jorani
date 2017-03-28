@@ -101,6 +101,7 @@ $lang['leaves_view_field_duration'] = 'Duration';
 $lang['leaves_view_field_cause'] = 'Reason';
 $lang['leaves_view_field_status'] = 'Status';
 $lang['leaves_view_button_edit'] = 'Edit';
+$lang['leaves_view_button_print'] = 'Print the leave PDF';
 $lang['leaves_view_button_back_list'] = 'Back to list';
 
 $lang['leaves_export_title'] = 'List of leaves';

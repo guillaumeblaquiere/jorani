@@ -44,8 +44,20 @@
     <?php if (($leave['status'] == 1) || ($is_hr)) { ?>
     <a href="<?php echo base_url();?>leaves/edit/<?php echo $leave['id'] ?>" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_edit');?></a>
     &nbsp;
-    <?php } ?>    
-   <a href="<?php echo base_url() . $source; ?>" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_back_list');?></a>
+    <?php } ?>
+    <?php if (($leave['status'] == 2)) { ?>
+            <button id="cmdExport" class="btn btn-primary"><i class="fa fa-file-excel-o"></i>&nbsp;<?php echo lang('leaves_view_button_print');?></button>
+    <?php } ?>
+    <a href="<?php echo base_url() . $source; ?>" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_back_list');?></a>
    
     </div>
 </div>
+<script type="text/javascript">
+
+    $("#cmdExport").click(function() {
+
+        url = '<?php echo base_url();?>leaves/printPdf/<?php echo $leave['id'] ?>';
+        document.location.href = url;
+
+    });
+</script>

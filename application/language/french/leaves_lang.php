@@ -102,6 +102,7 @@ $lang['leaves_view_field_duration'] = 'Durée';
 $lang['leaves_view_field_cause'] = 'Cause';
 $lang['leaves_view_field_status'] = 'Statut';
 $lang['leaves_view_button_edit'] = 'Modifier';
+$lang['leaves_view_button_print'] = 'Imprimer la fiche d\'absence PDF';
 $lang['leaves_view_button_back_list'] = 'Retour à la liste';
 
 $lang['leaves_export_title'] = 'Liste des demandes d\'absence';
