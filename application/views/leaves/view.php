@@ -46,7 +46,7 @@
     &nbsp;
     <?php } ?>
     <?php if (($leave['status'] == 2)) { ?>
-            <button id="cmdExport" class="btn btn-primary"><i class="fa fa-file-excel-o"></i>&nbsp;<?php echo lang('leaves_view_button_print');?></button>
+            <button id="cmdExport" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>&nbsp;<?php echo lang('leaves_view_button_print');?></button>
     <?php } ?>
     <a href="<?php echo base_url() . $source; ?>" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_back_list');?></a>
    
