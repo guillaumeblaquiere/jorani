@@ -195,11 +195,12 @@ class Leaves extends CI_Controller
             if ($this->input->post('status') == 2) {
                 $this->sendMailOnLeaveRequestCreation($leave_id);
             }
-            if (isset($_GET['source'])) {
+            redirect('leaves/leaves/'.$leave_id);
+/*            if (isset($_GET['source'])) {
                 redirect($_GET['source']);
             } else {
                 redirect('leaves');
-            }
+            }*/
         }
     }
 
@@ -266,11 +267,12 @@ class Leaves extends CI_Controller
             if ($this->input->post('status') == 2) {
                 $this->sendMailOnLeaveRequestCreation($id);
             }
-            if (isset($_GET['source'])) {
+            redirect('leaves/leaves/'.$id);
+            /*if (isset($_GET['source'])) {
                 redirect($_GET['source']);
             } else {
                 redirect('leaves');
-            }
+            }*/
         }
     }
 
