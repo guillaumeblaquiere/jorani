@@ -3,7 +3,7 @@
 $config['protocol'] = 'smtp';
 $config['useragent'] = 'phpmailer';
 //$config['mailpath'] = '/usr/sbin/sendmail';
-$config['smtp_host'] = 'localhost';
+$config['smtp_host'] = 'mail.hrsys.fr';
 $config['smtp_user'] = '';
 $config['smtp_pass'] = '';
 $config['_smtp_auth'] = TRUE;

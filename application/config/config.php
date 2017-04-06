@@ -398,18 +398,18 @@ $config['login_pattern'] = 'jdoe';            //(default) First letter of firstn
 
 //____________________________________________________________________________
 //Set this value to TRUE if you want to create leaves at status requested instead of planned
-$config['leave_status_requested'] = FALSE;
-$config['default_leave_type'] = FALSE;      //Set this value with the default leave type identifier (integer).
+$config['leave_status_requested'] = TRUE;
+$config['default_leave_type'] = 1;      //Set this value with the default leave type identifier (integer).
 
 //Create a leave request / Allow overwrite of the duration
 $config['disable_edit_leave_duration'] = FALSE;             //Switch to read-only (the duration of leave is computed)
 
 //Allow to cancel a leave request
-$config['cancel_leave_request'] = FALSE;             //Switch to allow the leave request cancellation by the requester
+$config['cancel_leave_request'] = TRUE;             //Switch to allow the leave request cancellation by the requester
 //Allow to cancel a Accepted request
 $config['cancel_accepted_leave'] = FALSE;             //Switch to allow the accepted leave cancellation by the requester
 //For workflow and cheating reason, it's recommended to don't allow a user cancelling its own leave request without emailing its manager.
-$config['cancel_past_requests'] = TRUE;             //Switch to allow the leave request cancellation by the collaborator even if the leave start in the past
+$config['cancel_past_requests'] = FALSE;             //Switch to allow the leave request cancellation by the collaborator even if the leave start in the past
 $config['notify_cancelled_requests'] = TRUE;             //Switch to send email to the manager when a leave request is cancelled
 
 //____________________________________________________________________________
@@ -447,7 +447,7 @@ $config['fonts'] =
 
 //____________________________________________________________________________
 //Set this value to TRUE if you want to hide the menu entries related to overtime
-$config['disable_overtime'] = FALSE;
+$config['disable_overtime'] = TRUE;
 
 //____________________________________________________________________________
 //Google analytics tracking code (if empty, the Javascript tracking code will be desactivated).
