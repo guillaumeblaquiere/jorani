@@ -57,7 +57,24 @@ class Leaves_model extends CI_Model {
         $this->db->order_by('leaves.id', 'desc');
         return $this->db->get()->result_array();
     }
-    
+
+    /**
+     * Get the the list of leaves requested for a given employee
+     * Id are replaced by label
+     * @param int $employee ID of the employee
+     * @return array list of records
+     * @author Benjamin BALET <benjamin.balet@gmail.com>
+     */
+    public function getLeavesOfEmployeeFromTypeAndStartDate($employee,$type,$startdate) {
+        $this->db->select('leaves.*');
+        $this->db->from('leaves');
+        $this->db->where('leaves.employee', $employee);
+        $this->db->where('leaves.type', $type);
+        $this->db->where("(startdate >= STR_TO_DATE('" . $startdate . "', '%Y-%m-%d'))");
+        $this->db->order_by('leaves.startdate', 'asc');
+        return $this->db->get()->result_array();
+    }
+
     /**
      * Return a list of Accepted leaves between two dates and for a given employee
      * @param int $employee ID of the employee

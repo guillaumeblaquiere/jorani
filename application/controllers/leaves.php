@@ -720,4 +720,94 @@ class Leaves extends CI_Controller
 
         echo json_encode($leaveValidator);
     }
+
+    public function majEtamVet($id = null){
+
+        //check right
+        $this->auth->checkIfOperationIsAllowed('list_settings');
+
+        $userId = intval($id);
+        if ($id =="" || $userId <= 0){
+            //apply rules on all employee
+            $data['employees'] = $this->users_model->getAllEmployees();
+            
+        }else{
+            $this->majEtamVetForAUser($userId);
+        }
+
+        redirect('admin/diagnostic');
+    }
+    
+    private function majEtamVetForAUser($userId){
+        $leaveEtamType = 22;
+        $leaveHollidayType = 1;
+
+        $this->load->model('users_model');
+        $this->load->model('leaves_model');
+        $this->load->model('entitleddays_model');
+
+        $data['users_item'] = $this->users_model->getUsers($userId);
+        if (empty($data['users_item'])) {
+            return;
+        }
+        
+        //check if it's an ETAM in user property
+        if(strpos($data['users_item']['identifier'],'ETAM=')>=0){
+            $etamStringStartDate = substr($data['users_item']['identifier'],strpos($data['users_item']['identifier'],'ETAM=')+5,10);
+            $etamStartDateArray = date_parse_from_format('d/m/Y',$etamStringStartDate);
+            $etamStartDate = mktime(0,0,0,$etamStartDateArray['month'],$etamStartDateArray['day'],$etamStartDateArray['year']);
+
+            if($etamStartDate != null){
+                $startDate = time();
+                if ($etamStartDate > $startDate)$startDate= $etamStartDate;
+                $leaves = $this->leaves_model->getLeavesOfEmployeeFromTypeAndStartDate($userId,$leaveEtamType,date('Y-m-d',$startDate));
+                //Loop to delete all leaves
+                for ($i = 0;$i<count($leaves);$i++){
+                    $this->leaves_model->deleteLeave($leaves[$i]['id']);
+                }
+
+                $currentDate = $startDate;
+                //loop to create day off every 14 days
+                while (date("Y",$currentDate)<(date("Y",time())+2)){
+                    $this->leaves_model->createLeaveByApi(date('Y-m-d',$currentDate), date('Y-m-d',$currentDate), '3', $userId, '',
+                        'Morning', 'Afternoon', 1, $leaveEtamType);
+                    $currentDate =  mktime(0, 0, 0, date("m",$currentDate)  , date("d",$currentDate)+14, date("Y",$currentDate));
+                }
+            }
+        }
+
+
+        //Check the anciently
+        $dateHiredArray = date_parse_from_format('Y-m-d',$data['users_item']['datehired']);
+        $dateHired = mktime(0,0,0,$dateHiredArray['month'],$dateHiredArray['day'],$dateHiredArray['year']);
+        $dateAccounted = mktime(0,0,0,6,1,date('Y'));
+        if($dateAccounted>time()) $dateAccounted = mktime(0,0,0,6,1,date('Y')-1);
+
+        $dateHiredDateTime = new DateTime();
+        $dateHiredDateTime->setTimestamp($dateHired);
+        $dateAccountedDateTime = new DateTime();
+        $dateAccountedDateTime->setTimestamp($dateAccounted);
+        $diff = date_diff( $dateHiredDateTime, $dateAccountedDateTime, true);
+        $yearAniently = floor($diff->y + $diff->m / 12 + $diff->d / 365.25);
+        log_message('error',$yearAniently);
+        $additionalDays = floor($yearAniently/5);
+        log_message('error',$additionalDays);
+        if ($additionalDays>4) $additionalDays = 4;
+        if($additionalDays>0){
+            //get all entitledDay from today
+            $entitleddays = $this->entitleddays_model->getEntitledDaysForEmployeeByTypeAndStartDate($userId,$leaveHollidayType,date('Y-m-d'));
+            //Loop to delete all leaves
+            for ($i = 0;$i<count($leaves);$i++){
+                $this->entitleddays_model->deleteEntitledDays($entitleddays[$i]['id']);
+            }
+            //Current Year
+            $year = date("Y");
+            //loop to create entitled day the next 2 years
+            while ($year<(date("Y")+2)){
+                $this->entitleddays_model->addEntitledDaysToEmployee($userId, $year.'-06-01', ($year+1).'-05-31', $additionalDays, $leaveHollidayType, 'Ancienneté');
+                $year++;
+            }
+        }
+    }
+
 }

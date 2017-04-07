@@ -24,7 +24,15 @@ $unusedContracts_count = ($unusedContracts_count == 0)?'':'<span class="badge ba
 //$leaveBalance_count = ($leaveBalance_count == 0)?'':'<span class="badge badge-info">' . $leaveBalance_count . '</span>&nbsp;';
 
 ?>
-<ul class="nav nav-tabs">
+<p>
+        <div>
+            <label for="userId"><?php echo lang('leaves_view_field_duration');?></label>
+            <input type="text" name="userId"  id="userId" value="" placeholder="userID; -1 = tous" />
+            <button id="autoUpdate" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;MAJ Auto compteurs ETAM & Ancienneté</button>
+        </div>
+</p>
+
+        <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#daysoff"><?php echo $daysOffYears_count . lang('admin_diagnostic_daysoff_tab');?></a></li>
     <li><a data-toggle="tab" href="#requests"><?php echo $duplicatedLeaves_count . lang('admin_diagnostic_requests_tab');?></a></li>
     <li><a data-toggle="tab" href="#datetypes"><?php echo $wrongDateType_count . lang('admin_diagnostic_datetype_tab');?></a></li>
@@ -39,8 +47,8 @@ $unusedContracts_count = ($unusedContracts_count == 0)?'':'<span class="badge ba
   <div class="tab-pane active" id="daysoff">
     
     <p><?php echo lang('admin_diagnostic_daysoff_description');?></p>
-    
-    <table class="table table-bordered table-hover table-condensed">
+
+      <table class="table table-bordered table-hover table-condensed">
       <thead>
         <tr>
             <th><?php echo lang('admin_diagnostic_daysoff_thead_id');?></th>
@@ -288,3 +296,17 @@ $unusedContracts_count = ($unusedContracts_count == 0)?'':'<span class="badge ba
 </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $("#autoUpdate").click(function() {
+
+        var userId = document.getElementById("userId").value;
+        if(userId == "") {
+            userId = -1;
+        }
+        var url = '<?php echo base_url();?>leaves/majEtamVet/' + userId;
+        document.location.href = url;
+
+    });
+</script>

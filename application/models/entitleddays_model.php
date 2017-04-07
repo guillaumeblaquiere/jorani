@@ -51,7 +51,17 @@ class Entitleddays_model extends CI_Model {
         $this->db->where('employee =', $employee);
         return $this->db->get()->result_array();
     }
-    
+
+    public function getEntitledDaysForEmployeeByTypeAndStartDate($employee,$type,$startdate) {
+        $this->db->select('entitleddays.*');
+        $this->db->from('entitleddays');
+        $this->db->order_by("startdate", "desc");
+        $this->db->where('employee =', $employee);
+        $this->db->where('type', $type);
+        $this->db->where("(startdate >= STR_TO_DATE('" . $startdate . "', '%Y-%m-%d'))");
+        return $this->db->get()->result_array();
+    }
+
     /**
      * Insert a new entitled days record (for a contract) into the database and return the id
      * @param int $contract_id contract identifier
