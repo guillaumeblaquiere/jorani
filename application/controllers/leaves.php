@@ -728,8 +728,12 @@ class Leaves extends CI_Controller
 
         $userId = intval($id);
         if ($id =="" || $userId <= 0){
+            $this->load->model('users_model');
             //apply rules on all employee
             $data['employees'] = $this->users_model->getAllEmployees();
+            for ($i = 0;$i<count($data['employees']);$i++){
+                $this->majEtamVetForAUser($data['employees'][$i]['id']);
+            }
             
         }else{
             $this->majEtamVetForAUser($userId);
