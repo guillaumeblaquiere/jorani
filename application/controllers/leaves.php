@@ -754,9 +754,9 @@ class Leaves extends CI_Controller
         if (empty($data['users_item'])) {
             return;
         }
-        
-        //check if it's an ETAM in user property
-        if(strpos($data['users_item']['identifier'],'ETAM=')>=0){
+
+         //check if it's an ETAM in user property
+        if(strpos($data['users_item']['identifier'],'ETAM=') != "" && strpos($data['users_item']['identifier'],'ETAM=')>=0){
             $etamStringStartDate = substr($data['users_item']['identifier'],strpos($data['users_item']['identifier'],'ETAM=')+5,10);
             $etamStartDateArray = date_parse_from_format('d/m/Y',$etamStringStartDate);
             $etamStartDate = mktime(0,0,0,$etamStartDateArray['month'],$etamStartDateArray['day'],$etamStartDateArray['year']);
@@ -766,7 +766,7 @@ class Leaves extends CI_Controller
                 if ($etamStartDate > $startDate)$startDate= $etamStartDate;
                 $leaves = $this->leaves_model->getLeavesOfEmployeeFromTypeAndStartDate($userId,$leaveEtamType,date('Y-m-d',$startDate));
                 //Loop to delete all leaves
-                for ($i = 0;$i<count($leaves);$i++){
+                for ($i = count($leaves)-1;$i>=0;$i--){
                     $this->leaves_model->deleteLeave($leaves[$i]['id']);
                 }
 
@@ -793,16 +793,14 @@ class Leaves extends CI_Controller
         $dateAccountedDateTime->setTimestamp($dateAccounted);
         $diff = date_diff( $dateHiredDateTime, $dateAccountedDateTime, true);
         $yearAniently = floor($diff->y + $diff->m / 12 + $diff->d / 365.25);
-        log_message('error',$yearAniently);
         $additionalDays = floor($yearAniently/5);
-        log_message('error',$additionalDays);
         if ($additionalDays>4) $additionalDays = 4;
         if($additionalDays>0){
             //get all entitledDay from today
             $entitleddays = $this->entitleddays_model->getEntitledDaysForEmployeeByTypeAndStartDate($userId,$leaveHollidayType,date('Y-m-d'));
             //Loop to delete all leaves
-            for ($i = 0;$i<count($leaves);$i++){
-                $this->entitleddays_model->deleteEntitledDays($entitleddays[$i]['id']);
+            for ($j = count($entitleddays)-1;$j>=0;$j--){
+                $this->entitleddays_model->deleteEntitledDays($entitleddays[$j]['id']);
             }
             //Current Year
             $year = date("Y");
