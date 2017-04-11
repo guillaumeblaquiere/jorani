@@ -58,6 +58,7 @@ class Entitleddays_model extends CI_Model {
         $this->db->order_by("startdate", "desc");
         $this->db->where('employee =', $employee);
         $this->db->where('type', $type);
+        $this->db->where('days > 0');
         $this->db->where("(startdate >= STR_TO_DATE('" . $startdate . "', '%Y-%m-%d'))");
         return $this->db->get()->result_array();
     }
