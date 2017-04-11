@@ -1,3 +1,11 @@
+For HR :
+ * On user, the internal ID is: projeqtor=XX, where XX is the projeqtor user ID for auto sync. And ETAM=DD/MM/YYYY to specify the first day not worked for ETAM. Automatic process generated special ETAM day off each other week
+ * On diagnotiq page, the automatic process for calculating ETAM day off and Anciently day off can be launch for all (let empty or -1) or for only 1 employee (fill with the employee ID in the input field)
+
+
+
+
+
 Jorani is a Leave Management System developed in PHP/MySQL under an AGPL v3 licence.
 Jorani is designed to provide simple leave and overtime request workflows for small organizations.
 
