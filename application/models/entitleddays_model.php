@@ -52,12 +52,13 @@ class Entitleddays_model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
-    public function getEntitledDaysForEmployeeByTypeAndStartDate($employee,$type,$startdate) {
+    public function getEntitledDaysForEmployeeByTypeAndStartDateAndDescription($employee,$type,$startdate,$description) {
         $this->db->select('entitleddays.*');
         $this->db->from('entitleddays');
         $this->db->order_by("startdate", "desc");
         $this->db->where('employee =', $employee);
         $this->db->where('type', $type);
+        $this->db->where('description', $description);
         $this->db->where('days > 0');
         $this->db->where("(startdate >= STR_TO_DATE('" . $startdate . "', '%Y-%m-%d'))");
         return $this->db->get()->result_array();

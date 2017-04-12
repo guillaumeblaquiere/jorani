@@ -29,6 +29,7 @@ $unusedContracts_count = ($unusedContracts_count == 0)?'':'<span class="badge ba
             <label for="userId"><?php echo lang('leaves_view_field_duration');?></label>
             <input type="text" name="userId"  id="userId" value="" placeholder="userID; -1 = tous" />
             <button id="autoUpdate" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;MAJ Auto compteurs ETAM & Ancienneté</button>
+            <button id="reportLeave" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;Report des congés</button>
         </div>
 </p>
 
@@ -306,6 +307,16 @@ $unusedContracts_count = ($unusedContracts_count == 0)?'':'<span class="badge ba
             userId = -1;
         }
         var url = '<?php echo base_url();?>leaves/majEtamVet/' + userId;
+        document.location.href = url;
+
+    });
+    $("#reportLeave").click(function() {
+
+        var userId = document.getElementById("userId").value;
+        if(userId == "") {
+            userId = -1;
+        }
+        var url = '<?php echo base_url();?>leaves/reportLeave/' + userId;
         document.location.href = url;
 
     });

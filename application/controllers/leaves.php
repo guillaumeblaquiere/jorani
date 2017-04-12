@@ -796,8 +796,9 @@ class Leaves extends CI_Controller
         $additionalDays = floor($yearAniently/5);
         if ($additionalDays>4) $additionalDays = 4;
         if($additionalDays>0){
+            $description = 'Ancienneté';
             //get all entitledDay from today
-            $entitleddays = $this->entitleddays_model->getEntitledDaysForEmployeeByTypeAndStartDate($userId,$leaveHollidayType,date('Y-m-d'));
+            $entitleddays = $this->entitleddays_model->getEntitledDaysForEmployeeByTypeAndStartDateAndDescription($userId,$leaveHollidayType,date('Y-m-d'),$description);
             //Loop to delete all leaves
             for ($j = count($entitleddays)-1;$j>=0;$j--){
                 $this->entitleddays_model->deleteEntitledDays($entitleddays[$j]['id']);
@@ -806,10 +807,48 @@ class Leaves extends CI_Controller
             $year = date("Y");
             //loop to create entitled day the next 2 years
             while ($year<(date("Y")+2)){
-                $this->entitleddays_model->addEntitledDaysToEmployee($userId, $year.'-06-01', ($year+1).'-05-31', $additionalDays, $leaveHollidayType, 'Ancienneté');
+                $this->entitleddays_model->addEntitledDaysToEmployee($userId, $year.'-06-01', ($year+1).'-05-31', $additionalDays, $leaveHollidayType, $description);
                 $year++;
             }
         }
     }
+
+    public function reportLeave($id = null){
+
+        //check right
+        $this->auth->checkIfOperationIsAllowed('list_settings');
+
+        $userId = intval($id);
+        if ($id =="" || $userId <= 0){
+            $this->load->model('users_model');
+            //apply rules on all employee
+            $data['employees'] = $this->users_model->getAllEmployees();
+            for ($i = 0;$i<count($data['employees']);$i++){
+                $this->reportLeaveForAUser($data['employees'][$i]['id']);
+            }
+
+        }else{
+            $this->reportLeaveForAUser($userId);
+        }
+
+        redirect('admin/diagnostic');
+    }
+
+    private function reportLeaveForAUser($userId){
+        $leaveHollidayType = 1;
+
+        //year to consider is currentYear -1 if currentMonth is < June (6), currentYear if CurrentMonth is >= June (6)
+        $year = date("Y");
+        if(intval(date("m"))<6){ $year--;}
+
+        $this->load->model('leaves_model');
+        $balance = $this->leaves_model->getLeavesTypeBalanceForEmployee($userId, $leaveHollidayType, $year.'-05-31');
+        if($balance < 0){
+            $this->load->model('entitleddays_model');
+            $this->entitleddays_model->addEntitledDaysToEmployee($userId, $year.'-06-01', ($year+1).'-05-31', $balance, $leaveHollidayType, 'Congés anticipé '.$year-1);
+            $this->entitleddays_model->addEntitledDaysToEmployee($userId, ($year-1).'-06-01', ($year).'-05-31', $balance*-1, $leaveHollidayType, 'Régul congés anticipé '.$year-1);
+        }
+    }
+
 
 }

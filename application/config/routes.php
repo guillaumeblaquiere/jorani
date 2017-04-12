@@ -184,6 +184,7 @@ $route['leaves/delete/(:num)'] = 'leaves/delete/$1';
 $route['leaves/(:num)/history'] = 'leaves/history/$1';
 $route['leaves/cancel/(:num)'] = 'leaves/cancel/$1';
 $route['leaves/majEtamVet/(:any)'] = 'leaves/majEtamVet/$1';
+$route['leaves/reportLeave/(:any)'] = 'leaves/reportLeave/$1';
 $route['leaves/([^/]+)/(:num)'] = 'leaves/view/$1/$2';
 $route['leaves/validate'] = 'leaves/validate';
 $route['leaves'] = 'leaves';

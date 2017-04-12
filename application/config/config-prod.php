@@ -391,7 +391,7 @@ $config['disable_capitalization'] = FALSE;    //Set this value to TRUE if you wa
 $config['password_length'] = 8;                    //Password minimal length
 $config['default_role_id'] = 2;                       //Default role id (e.g. 2 for user)
 //Login pattern (automatically created from firstname and lastname)
-$config['login_pattern'] = 'jdoe';            //(default) First letter of firstname and lastname (up to field limit)
+$config['login_pattern'] = 'john.doe';            //(default) First letter of firstname and lastname (up to field limit)
 //$config['login_pattern'] = 'john.doe';    //Firstname plus dot plus lastname (up to field limit)
 //$config['login_pattern'] = 'john_doe';    //Firstname plus underscore plus lastname (up to field limit)
 //$config['login_pattern'] = '#email';       //Copy another field of the form (use an existing field name with the pound sign)
@@ -461,8 +461,8 @@ $config['ga_send_userid'] = FALSE;
 
 //____________________________________________________________________________
 //LDAP configuration
-$config['ldap_enabled'] = false;
-$config['ldap_host'] = 'localhost';
+$config['ldap_enabled'] = true;
+$config['ldap_host'] = 'ophmsg01s.priv.hrsys.fr';
 $config['ldap_port'] = 389;
 $config['ldap_basedn'] = 'uid=%s,ou=people,dc=hrsys,dc=fr';  //Change the pattern, but let %s that symbolizes the user identifier
 $config['ldap_basedn_db'] = FALSE;      //If TRUE, ldap path is taken from user table

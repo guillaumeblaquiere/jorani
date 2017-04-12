@@ -355,11 +355,14 @@ class Leaves_model extends CI_Model {
     public function getLeavesTypeBalanceForEmployee($id, $type, $startdate = NULL) {
         $summary = $this->getLeaveBalanceForEmployee($id, TRUE, $startdate);
         //return entitled days - taken (for a given leave type)
+        $this->load->model('types_model');
+
+        $typeName = $this->types_model->getName($type);
         if (is_null($summary)) {
             return NULL;
         } else {
-            if (array_key_exists($type, $summary)) {
-                return ($summary[$type][1] - $summary[$type][0]);
+            if (array_key_exists($typeName, $summary)) {
+                return ((float)$summary[$typeName][1] - (float)$summary[$typeName][0]);
             } else {
                 return 0;
             }

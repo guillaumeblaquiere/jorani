@@ -1,6 +1,7 @@
 For HR :
  * On user, the internal ID is: projeqtor=XX, where XX is the projeqtor user ID for auto sync. And ETAM=DD/MM/YYYY to specify the first day not worked for ETAM. Automatic process generated special ETAM day off each other week
- * On diagnotiq page, the automatic process for calculating ETAM day off and Anciently day off can be launch for all (let empty or -1) or for only 1 employee (fill with the employee ID in the input field)
+ * On diagnostic page, the automatic process for calculating ETAM day off and Anciently day off can be launch for all (let empty or -1) or for only 1 employee (fill with the employee ID in the input field)
+ * On diagnostic page, the leave taken by anticipation are set on the new year automatically when clic on the button. Only negative balance are reported. After the report, the n-1 year are cleared (balance = 0 by adding entitled day for regulation), and year n have -XXX day as entitled days.
 
 
 
