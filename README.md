@@ -3,7 +3,7 @@ For HR :
  * On diagnostic page, the automatic process for calculating ETAM day off and Anciently day off can be launch for all (let empty or -1) or for only 1 employee (fill with the employee ID in the input field)
  * On diagnostic page, the leave taken by anticipation are set on the new year automatically when clic on the button. Only negative balance are reported. After the report, the n-1 year are cleared (balance = 0 by adding entitled day for regulation), and year n have -XXX day as entitled days.
 
-
+mysqldump.exe -P 3307 -h localhost -u jorani_d --password jorani --result-file="C:\\Users\\guillaume\\Desktop\\tmp\\jorani.dump" "oauth_clients" "oauth_authorization_codes" leaves users dayoffs actions "oauth_jwt" delegations "oauth_access_tokens" roles "activities_employee" "oauth_users" overtime activities types "leaves_history" entitleddays contracts "oauth_scopes" positions time tasks status settings "oauth_refresh_tokens" "excluded_types" organization --complete-insert --skip-lock-tables --skip-add-locks
 
 
 

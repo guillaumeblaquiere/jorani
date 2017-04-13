@@ -566,6 +566,7 @@ class MY_Email extends CI_Email {
                     $this->phpmailer = new PHPMailer();
                     $this->phpmailer->PluginDir = APPPATH.'third_party/phpmailer/';
                 }
+                $this->phpmailer->SMTPAutoTLS = false;
 
                 // Refresh PHPMailer options.
 
