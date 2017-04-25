@@ -762,8 +762,10 @@ class Leaves extends CI_Controller
             $etamStartDate = mktime(0,0,0,$etamStartDateArray['month'],$etamStartDateArray['day'],$etamStartDateArray['year']);
 
             if($etamStartDate != null){
-                $startDate = time();
-                if ($etamStartDate > $startDate)$startDate= $etamStartDate;
+                $startDate= $etamStartDate;
+                while ($startDate < time()){
+                    $startDate= mktime(0,0,0,date('m',$startDate),date('d',$startDate)+14,date('Y',$startDate));
+                }
                 $leaves = $this->leaves_model->getLeavesOfEmployeeFromTypeAndStartDate($userId,$leaveEtamType,date('Y-m-d',$startDate));
                 //Loop to delete all leaves
                 for ($i = count($leaves)-1;$i>=0;$i--){
