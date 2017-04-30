@@ -310,10 +310,11 @@
                 alert('e');
             }
             if (entity == -1) {
-                var UrlICS = '<?php echo base_url(); ?>ics/entity/<?php echo $user_id; ?>/0/' + $('#chkIncludeChildren').prop('checked');
+                var UrlICS = '<?php echo base_url(); ?>ics/entity/'+btoa('<?php echo $user_id; ?>/0/' + $('#chkIncludeChildren').prop('checked'));
             } else {
-                var UrlICS = '<?php echo base_url(); ?>ics/entity/<?php echo $user_id; ?>/' + entity + '/' + $('#chkIncludeChildren').prop('checked');
+                var UrlICS = '<?php echo base_url(); ?>ics/entity/'+btoa('<?php echo $user_id; ?>/' + entity + '/' + $('#chkIncludeChildren').prop('checked'));
             }
+            UrlICS = UrlICS.split('=').join('');
             $('#txtIcsUrl').val(UrlICS);
             ZeroClipboard.setData( "text/plain", UrlICS);
             $("#frmLinkICS").modal('show');

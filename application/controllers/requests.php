@@ -9,6 +9,7 @@
 
 if (!defined('BASEPATH')) { exit('No direct script access allowed'); }
 
+use Sabre\VObject;
 /**
  * This class allows a manager to list and manage leave requests submitted to him.
  * Since 0.3.0, we expose the list of collaborators and allow a manager to access to some reports:
@@ -29,6 +30,8 @@ class Requests extends CI_Controller {
         $this->load->model('leaves_model');
         $this->lang->load('requests', $this->language);
         $this->lang->load('global', $this->language);
+        $this->load->library('polyglot');
+        require_once(APPPATH . 'third_party/VObjects/vendor/autoload.php');
     }
 
     /**
@@ -309,17 +312,67 @@ class Requests extends CI_Controller {
             'Cause' => $leave['cause'],
             'Type' => $leave['type_name']
         );
-        
+
+        $tmpfile=null;
         if ($leave['status'] == 3) {    //accepted
             $message = $this->parser->parse('emails/' . $employee['language'] . '/request_accepted', $data, TRUE);
             $subject = $lang_mail->line('email_leave_request_accept_subject');
+            //TODO add iCal
+            $tmpfile = sys_get_temp_dir ()."/joraniTmp_".$id.$leave['startdate'].'.vcs';
+
+            $handle = fopen($tmpfile, "w");
+            fwrite($handle, $this->ical($id));
+            fclose($handle);
+
         } else {    //rejected
             $message = $this->parser->parse('emails/' . $employee['language'] . '/request_rejected', $data, TRUE);
             $subject = $lang_mail->line('email_leave_request_reject_subject');
         }
-        sendMailByWrapper($this, $subject, $message, $employee['email'], is_null($supervisor)?NULL:$supervisor->email);
+        sendMailByWrapper($this, $subject, $message, $employee['email'], is_null($supervisor)?NULL:$supervisor->email,$tmpfile);
+
+        if ($leave['status'] == 3) {    //accepted
+            unlink($tmpfile);
+        }
     }
-    
+
+    private function ical($id){
+        $this->load->model('types_model');
+
+        $leave = $this->leaves_model->getLeaves($id);
+        $employee = $this->users_model->getUsers($leave['employee']);
+
+        if (!is_null($employee['timezone'])) {
+            $tzdef = $employee['timezone'];
+        } else {
+            $tzdef = $this->config->item('default_timezone');
+            if ($tzdef == FALSE) $tzdef = 'Europe/Paris';
+        }
+        $this->lang->load('global', $this->polyglot->code2language($employee['language']));
+
+        $startdate = new \DateTime($leave['startdate'], new \DateTimeZone($tzdef));
+        $enddate = new \DateTime($leave['enddate'], new \DateTimeZone($tzdef));
+        if ($leave['startdatetype'] == 'Morning') $startdate->setTime(0, 0);
+        if ($leave['startdatetype'] == 'Afternoon') $startdate->setTime(12, 0);
+        if ($leave['enddatetype'] == 'Morning') $enddate->setTime(12, 0);
+        if ($leave['enddatetype'] == 'Afternoon') $enddate->setTime(23, 59);
+
+        //In order to support Outlook, we convert start and end dates to UTC
+        $startdate->setTimezone(new DateTimeZone("UTC"));
+        $enddate->setTimezone(new DateTimeZone("UTC"));
+        $vcalendar = new VObject\Component\VCalendar();
+        $vcalendar->add('VEVENT', Array(
+            'SUMMARY' => $this->types_model->getName($leave['type']),
+            'CATEGORIES' => lang('leave'),
+            'X-MICROSOFT-CDO-BUSYSTATUS'=>'OOF',
+            'DTSTART' => $startdate,
+            'DTEND' => $enddate,
+            'DESCRIPTION' =>  ($leave['cause']!=''?($leave['cause']):''),
+            'URL' => base_url() . "leaves/" . $leave['id'],
+            ));
+
+        return $vcalendar->serialize();
+    }
+
     /**
      * Export the list of all leave requests (sent to the connected user) into an Excel file
      * @param string $name Filter the list of submitted leave requests (all or requested)

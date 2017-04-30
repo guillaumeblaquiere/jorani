@@ -281,6 +281,7 @@ $route['api/rejectleaves/(:num)'] = 'api/rejectleaves/$1';
 $route['ics/individual/(:num)'] = 'ics/individual/$1';
 $route['ics/dayoffs/(:num)/(:num)'] = 'ics/dayoffs/$1/$2';
 $route['ics/entity/(:num)/(:num)/(:any)'] = 'ics/entity/$1/$2/$3';
+$route['ics/entity/(:any)'] = 'ics/entityEncoded/$1';
 $route['ics/collaborators/(:num)'] = 'ics/collaborators/$1';
 $route['ics/ical/(:num)'] = 'ics/ical/$1';
 

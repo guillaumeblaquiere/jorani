@@ -80,6 +80,7 @@ class Ics extends CI_Controller {
                     $vcalendar->add('VEVENT', Array(
                         'SUMMARY' => $event->title,
                         'CATEGORIES' => lang('day off'),
+                        'X-MICROSOFT-CDO-BUSYSTATUS'=>'OOF',
                         'DTSTART' => $startdate,
                         'DTEND' => $enddate
                     ));    
@@ -132,7 +133,8 @@ class Ics extends CI_Controller {
                     $vcalendar->add('VEVENT', Array(
                             'SUMMARY' => lang('leave'),
                             'CATEGORIES' => lang('leave'),
-                            'DTSTART' => $startdate,
+                        'X-MICROSOFT-CDO-BUSYSTATUS'=>'OOF',
+                        'DTSTART' => $startdate,
                             'DTEND' => $enddate,
                             'DESCRIPTION' => $event['cause'],
                             'URL' => base_url() . "leaves/" . $event['id'],
@@ -142,6 +144,12 @@ class Ics extends CI_Controller {
             }
         }
     }
+
+    public function entityEncoded($encoded){
+        $decodedParams = explode('/',base64_decode($encoded));
+        return $this->entity($decodedParams[0],$decodedParams[1],$decodedParams[2]);
+    }
+
 
     /**
      * Get the list of leaves for a group of employees attached to an entity
@@ -187,6 +195,7 @@ class Ics extends CI_Controller {
                         'SUMMARY' => $event['firstname'] . ' ' . $event['lastname'],
                         'CATEGORIES' => lang('leave'),
                         'DTSTART' => $startdate,
+                        'X-MICROSOFT-CDO-BUSYSTATUS'=>'OOF',
                         'DTEND' => $enddate,
                         'DESCRIPTION' => $event['type'] . ($event['cause']!=''?(' / ' . $event['cause']):''),
                         'URL' => base_url() . "leaves/" . $event['id'],
@@ -237,6 +246,7 @@ class Ics extends CI_Controller {
                     $vcalendar->add('VEVENT', Array(
                         'SUMMARY' => $event['firstname'] . ' ' . $event['lastname'],
                         'CATEGORIES' => lang('leave'),
+                        'X-MICROSOFT-CDO-BUSYSTATUS'=>'OOF',
                         'DTSTART' => $startdate,
                         'DTEND' => $enddate,
                         'DESCRIPTION' => $event['type_label'] . ($event['cause']!=''?(' / ' . $event['cause']):''),
@@ -279,6 +289,7 @@ class Ics extends CI_Controller {
         $vcalendar->add('VEVENT', Array(
             'SUMMARY' => lang('leave'),
             'CATEGORIES' => lang('leave'),
+            'X-MICROSOFT-CDO-BUSYSTATUS'=>'OOF',
             'DESCRIPTION' => $leave['cause'],
             'DTSTART' => $startdate,
             'DTEND' => $enddate,

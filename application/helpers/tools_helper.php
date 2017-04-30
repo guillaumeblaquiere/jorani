@@ -94,7 +94,7 @@ function sanitize($value)
  * @param string $cc (optional) Copied to recipients
  * @author Benjamin BALET <benjamin.balet@gmail.com>
  */
-function sendMailByWrapper(CI_Controller $controller, $subject, $message, $to, $cc = NULL)
+function sendMailByWrapper(CI_Controller $controller, $subject, $message, $to, $cc = NULL,$file=null)
 {
     $controller->load->library('email');
     if ($controller->config->item('subject_prefix') != FALSE) {
@@ -111,6 +111,9 @@ function sendMailByWrapper(CI_Controller $controller, $subject, $message, $to, $
     $controller->email->to($to);
     if (!is_null($cc)) {
         $controller->email->cc($cc);
+    }
+    if(!is_null($file)){
+        $controller->email->attach($file);
     }
     $controller->email->message($message);
     $controller->email->send();
