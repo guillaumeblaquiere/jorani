@@ -14,13 +14,13 @@
 <h2><?php echo lang('hr_leaves_html_title');?><?php echo $user_id; ?>&nbsp;<span class="muted">(<?php echo $name ?>)</span></h2>
 
 <?php echo $flash_partial_view;?>
-
+        <?php if ($isEtam){?>
         <div class="span3">
             <label for="chkIncludeEtamLeaves">
                 <input type="checkbox" value="" id="chkIncludeEtamLeaves" name="chkIncludeEtamLeaves">Inclure les congés ETAM acceptés
             </label>
         </div>
-
+        <?php }?>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="leaves" width="100%">
     <thead>
         <tr>

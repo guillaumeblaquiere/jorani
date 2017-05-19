@@ -534,3 +534,5 @@ $config['enable_history'] = FALSE;
 $config['leaveEtamType'] = 22;
 $config['leaveHollidayType'] = 1;
 
+$config['listContactWithEtam'] = '2,3';
+

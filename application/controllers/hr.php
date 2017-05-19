@@ -238,6 +238,11 @@ class Hr extends CI_Controller {
             $data['leaves'] = $this->leaves_model->getLeavesOfEmployee($id);
         }
 
+        $etamContractsList = explode(',',$this->config->item('listContactWithEtam'));
+        $this->load->model('users_model');
+        $employee = $this->users_model->getUsers($id);
+        $data['isEtam'] = in_array($employee['contract'],$etamContractsList);
+
         if ($this->config->item('enable_history') == TRUE) {
             $this->load->model('history_model');
             $data['deletedLeaves'] = $this->history_model->getDeletedLeaveRequests($id);

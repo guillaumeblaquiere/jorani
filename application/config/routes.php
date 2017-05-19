@@ -188,7 +188,8 @@ $route['leaves/majEtamVet/(:any)'] = 'leaves/majEtamVet/$1';
 $route['leaves/reportLeave/(:any)'] = 'leaves/reportLeave/$1';
 $route['leaves/([^/]+)/(:num)'] = 'leaves/view/$1/$2';
 $route['leaves/validate'] = 'leaves/validate';
-$route['leaves'] = 'leaves';
+$route['leaves/(:any)'] = 'leaves/index/$1';
+$route['leaves'] = 'leaves/index/false';
 
 //_______________________________________________
 //leave requests (submitted to the line manager)

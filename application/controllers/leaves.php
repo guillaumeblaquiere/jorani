@@ -38,16 +38,27 @@ class Leaves extends CI_Controller
         $this->lang->load('global', $this->language);
     }
 
+
     /**
      * Display the list of the leave requests of the connected user
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
-    public function index()
+    public function index($showEtamLeave)
     {
         $this->auth->checkIfOperationIsAllowed('list_leaves');
         $data = getUserContext($this);
         $this->lang->load('datatable', $this->language);
-        $data['leaves'] = $this->leaves_model->getLeavesOfEmployee($this->session->userdata('id'));
+        if($showEtamLeave=='false'){
+            $leaveEtamType = $this->config->item('leaveEtamType');
+            $data['leaves'] = $this->leaves_model->getLeavesOfEmployeeExceptAcceptedList($this->session->userdata('id'),$leaveEtamType);
+        } else{
+            $data['leaves'] = $this->leaves_model->getLeavesOfEmployee($this->session->userdata('id'));
+        }
+        $etamContractsList = explode(',',$this->config->item('listContactWithEtam'));
+        $this->load->model('users_model');
+        $employee = $this->users_model->getUsers($this->session->userdata('id'));
+        $data['isEtam'] = in_array($employee['contract'],$etamContractsList);
+
         $data['title'] = lang('leaves_index_title');
         $data['help'] = $this->help->create_help_link('global_link_doc_page_leave_requests_list');
         $data['flash_partial_view'] = $this->load->view('templates/flash', $data, TRUE);
