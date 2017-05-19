@@ -743,8 +743,8 @@ class Leaves extends CI_Controller
     }
     
     private function majEtamVetForAUser($userId){
-        $leaveEtamType = 22;
-        $leaveHollidayType = 1;
+        $leaveEtamType = $this->config->item('leaveEtamType');
+        $leaveHollidayType = $this->config->item('leaveHollidayType');
 
         $this->load->model('users_model');
         $this->load->model('leaves_model');
@@ -837,7 +837,7 @@ class Leaves extends CI_Controller
     }
 
     private function reportLeaveForAUser($userId){
-        $leaveHollidayType = 1;
+        $leaveHollidayType = $this->config->item('leaveHollidayType');
 
         //year to consider is currentYear -1 if currentMonth is < June (6), currentYear if CurrentMonth is >= June (6)
         $year = date("Y");

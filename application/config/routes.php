@@ -70,7 +70,8 @@ $route['hr/employees/edit/entity'] = 'hr/editEntity';
 $route['hr/employees/edit/contract'] = 'hr/editContract';
 $route['hr/employees/edit/entitlements'] = 'hr/editEntitlements';
 $route['hr/employees/create/leave'] = 'hr/createLeaveRequest';
-$route['hr/leaves/(:num)'] = 'hr/leaves/$1';
+$route['hr/leaves/(:num)'] = 'hr/leaves/$1/false';
+$route['hr/leaves/(:num)/(:any)'] = 'hr/leaves/$1/$2';
 $route['hr/leaves/export/(:num)'] = 'hr/exportLeaves/$1';
 $route['hr/overtime/(:num)'] = 'hr/overtime/$1';
 $route['hr/counters/([^/]+)/(:num)'] = 'hr/counters/$1/$2';
@@ -204,8 +205,9 @@ $route['requests/delegations/(:num)'] = 'requests/delegations/$1';
 $route['requests/delegations'] = 'requests/delegations';
 $route['requests/ajax/delegations/delete'] = 'requests/deleteDelegations';
 $route['requests/ajax/delegations/add'] = 'requests/addDelegations';
-$route['requests/(:any)'] = 'requests/index/$1';
-$route['requests'] = 'requests/index/requested';
+$route['requests/(:any)'] = 'requests/index/$1/false';
+$route['requests/(:any)/(:any)'] = 'requests/index/$1/$2';
+$route['requests'] = 'requests/index/requested/false';
 
 //_______________________________________________
 //overtime requests

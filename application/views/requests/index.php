@@ -15,6 +15,11 @@
 
 <?php echo $flash_partial_view;?>
 
+        <div class="span3">
+            <label for="chkIncludeEtamLeaves">
+                <input type="checkbox" value="" id="chkIncludeEtamLeaves" name="chkIncludeEtamLeaves">Inclure les congés ETAM
+            </label>
+        </div>
 <p><?php echo lang('requests_index_description');?></p>
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="leaves" width="100%">
@@ -115,9 +120,14 @@
 <link href="<?php echo base_url();?>assets/datatable/DataTables-1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
 <script type="text/javascript" src="<?php echo base_url();?>assets/datatable/DataTables-1.10.11/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/ZeroClipboard.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.pers-brow.js"></script>
 
 <script type="text/javascript">
 var clicked = false;
+var checkedStatus = $.cookie('request_includeEtamLeaves');
+if (checkedStatus == undefined) checkedStatus = 'false';
+$('#chkIncludeEtamLeaves').prop('checked', $.parseJSON(checkedStatus.toLowerCase()));
+
     
 $(document).ready(function() {
     //Transform the HTML table in a fancy datatable
@@ -163,6 +173,16 @@ $(document).ready(function() {
             window.location.href = "<?php echo base_url();?>requests/reject/" + $(this).data("id");
         }
      });
+    $('#chkIncludeEtamLeaves').click(function() {
+        $.cookie('request_includeEtamLeaves', $('#chkIncludeEtamLeaves').prop('checked'));
+        var source = '<?php echo base_url();?>requests/<?php echo $filter?>/';
+        if ($('#chkIncludeEtamLeaves').prop('checked') == true) {
+            source += 'true';
+        } else {
+            source += 'false';
+        }
+        window.location = source;
+    });
      
     <?php if ($this->config->item('enable_history') == TRUE) { ?>
     //Prevent to load always the same content (refreshed each time)

@@ -58,6 +58,24 @@ class Leaves_model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
+/**Get the the list of leaves requested for a given employee and with or without list of accepted leave
+* Id are replaced by label
+ * List is a string with type ID to ignore, separated by comma
+ */
+    public function getLeavesOfEmployeeExceptAcceptedList($employee,$list) {
+        $this->db->select('leaves.*');
+        $this->db->select('status.name as status_name, types.name as type_name');
+        $this->db->from('leaves');
+        $this->db->join('status', 'leaves.status = status.id');
+        $this->db->join('types', 'leaves.type = types.id');
+        $this->db->where('leaves.employee', $employee);
+        $this->db->where('(leaves.type not in ('.$list.') AND leaves.status=3) OR (leaves.status<>3 AND leaves.type in ('.$list.'))');
+        $this->db->order_by('leaves.id', 'desc');
+        return $this->db->get()->result_array();
+    }
+
+
+
     /**
      * Get the the list of leaves requested for a given employee
      * Id are replaced by label
@@ -997,7 +1015,35 @@ class Leaves_model extends CI_Model {
         $query = $this->db->get('leaves');
         return $query->result_array();
     }
-    
+
+    /**List all leave requests submitted to the connected user (or if delegate of a manager) and with or without list of type of leave
+     * Id are replaced by label
+     * List is a string with type ID to ignore, separated by comma
+     */
+    public function getLeavesRequestedToManagerExceptList($manager, $all = FALSE,$list) {
+        $this->load->model('delegations_model');
+        $ids = $this->delegations_model->listManagersGivingDelegation($manager);
+        $this->db->select('leaves.id as leave_id, users.*, leaves.*, types.name as type_label');
+        $this->db->select('status.name as status_name, types.name as type_name');
+        $this->db->join('status', 'leaves.status = status.id');
+        $this->db->join('types', 'leaves.type = types.id');
+        $this->db->join('users', 'users.id = leaves.employee');
+        $this->db->where('leaves.type not in ('.$list.')');
+
+        if (count($ids) > 0) {
+            array_push($ids, $manager);
+            $this->db->where_in('users.manager', $ids);
+        } else {
+            $this->db->where('users.manager', $manager);
+        }
+        if ($all == FALSE) {
+            $this->db->where('leaves.status', 2);
+        }
+        $this->db->order_by('leaves.startdate', 'desc');
+        $query = $this->db->get('leaves');
+        return $query->result_array();
+    }
+
     /**
      * Count leave requests submitted to the connected user (or if delegate of a manager)
      * @param int $manager connected user

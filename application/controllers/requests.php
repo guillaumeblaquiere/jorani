@@ -40,7 +40,7 @@ class Requests extends CI_Controller {
      * @param string $name Filter the list of submitted leave requests (all or requested)
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
-    public function index($filter = 'requested') {
+    public function index($filter = 'requested',$showEtamLeave = false) {
         $this->auth->checkIfOperationIsAllowed('list_requests');
         $data = getUserContext($this);
         $this->lang->load('datatable', $this->language);
@@ -48,7 +48,12 @@ class Requests extends CI_Controller {
         $data['title'] = lang('requests_index_title');
         $data['help'] = $this->help->create_help_link('global_link_doc_page_leave_validation');
         ($filter == 'all')? $showAll = TRUE : $showAll = FALSE;
-        $data['requests'] = $this->leaves_model->getLeavesRequestedToManager($this->user_id, $showAll);
+        if($showEtamLeave=='false'){
+            $leaveEtamType = $this->config->item('leaveEtamType');
+            $data['requests'] = $this->leaves_model->getLeavesRequestedToManagerExceptList($this->user_id, $showAll,$leaveEtamType);
+        } else{
+            $data['requests'] = $this->leaves_model->getLeavesRequestedToManager($this->user_id, $showAll);
+        }
         $data['flash_partial_view'] = $this->load->view('templates/flash', $data, TRUE);
         $this->load->view('templates/header', $data);
         $this->load->view('menu/index', $data);

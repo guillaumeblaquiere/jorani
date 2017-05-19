@@ -217,7 +217,7 @@ class Hr extends CI_Controller {
      * @param int $id employee id
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
-    public function leaves($id) {
+    public function leaves($id,$showEtamLeave) {
         $this->auth->checkIfOperationIsAllowed('list_employees');
         $data = getUserContext($this);
         $this->load->model('users_model');
@@ -230,7 +230,14 @@ class Hr extends CI_Controller {
         $data['title'] = lang('hr_leaves_title');
         $data['user_id'] = $id;
         $this->load->model('leaves_model');
-        $data['leaves'] = $this->leaves_model->getLeavesOfEmployee($id);
+
+        if($showEtamLeave=='false'){
+            $leaveEtamType = $this->config->item('leaveEtamType');
+            $data['leaves'] = $this->leaves_model->getLeavesOfEmployeeExceptAcceptedList($id,$leaveEtamType);
+        } else{
+            $data['leaves'] = $this->leaves_model->getLeavesOfEmployee($id);
+        }
+
         if ($this->config->item('enable_history') == TRUE) {
             $this->load->model('history_model');
             $data['deletedLeaves'] = $this->history_model->getDeletedLeaveRequests($id);
