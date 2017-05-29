@@ -45,7 +45,7 @@
     <a href="<?php echo base_url();?>leaves/edit/<?php echo $leave['id'] ?>" class="btn btn-primary"><i class="icon-pencil icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_edit');?></a>
     &nbsp;
     <?php } ?>
-    <?php if (($leave['status'] == 2) || ($leave['status'] == 3)) { ?>
+    <?php if ($leave['type']!= $leaveCancellationType && (($leave['status'] == 2) || ($leave['status'] == 3))) { ?>
             <button id="cmdExport" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>&nbsp;<?php echo lang('leaves_view_button_print');?></button>
     <?php } ?>
     <a href="<?php echo base_url() . $source; ?>" class="btn btn-primary"><i class="icon-arrow-left icon-white"></i>&nbsp;<?php echo lang('leaves_view_button_back_list');?></a>

@@ -25,39 +25,46 @@ echo form_open('leaves/create', $attributes) ?>
     </label>
     <select class="input-xxlarge" name="type" id="type">
     <?php foreach ($types as $typeId => $TypeName): ?>
-        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $defaultType) echo "selected"; ?>><?php echo $TypeName; ?></option>
+        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $this->config->item('leaveCancellationType')) { echo "selected"; $selectedType = $typeId;}?>><?php echo $TypeName; ?></option>
     <?php endforeach ?>
     </select>
         
-    <label for="viz_startdate"><?php echo lang('leaves_create_field_start');?></label>
-    <input type="text" name="viz_startdate" id="viz_startdate" value="<?php echo set_value('startdate'); ?>" autocomplete="off" />
-    <input type="hidden" name="startdate" id="startdate" />
+    <label for="viz_startdate"><?php echo lang('leaves_edit_field_start');?></label>
+    <input type="text" name="viz_startdate" id="viz_startdate" value="<?php $date = new DateTime($leave['startdate']); echo $date->format(lang('global_date_format'));?>" autocomplete="off" />
+    <input type="hidden" name="startdate" id="startdate" value="<?php echo $leave['startdate'];?>" />
     <select name="startdatetype" id="startdatetype">
-        <option value="Morning" selected><?php echo lang('Morning');?></option>
-        <option value="Afternoon"><?php echo lang('Afternoon');?></option>
-    </select><br />
-    
-    <label for="viz_enddate"><?php echo lang('leaves_create_field_end');?></label>
-    <input type="text" name="viz_enddate" id="viz_enddate" value="<?php echo set_value('enddate'); ?>" autocomplete="off" />
-    <input type="hidden" name="enddate" id="enddate" />
-    <select name="enddatetype" id="enddatetype">
-        <option value="Morning"><?php echo lang('Morning');?></option>
-        <option value="Afternoon" selected><?php echo lang('Afternoon');?></option>
+        <option value="Morning" <?php if ($leave['startdatetype'] == "Morning") {echo "selected";}?>><?php echo lang('Morning');?></option>
+        <option value="Afternoon" <?php if ($leave['startdatetype'] == "Afternoon") {echo "selected";}?>><?php echo lang('Afternoon');?></option>
     </select><br />
 
-    <label for="duration"><?php echo lang('leaves_create_field_duration');?></label>
-    <?php if ($this->config->item('disable_edit_leave_duration') == TRUE) { ?>
-    <input type="text" name="duration" id="duration" value="<?php echo set_value('duration'); ?>" readonly />
-    <?php } else { ?>
-    <input type="text" name="duration" id="duration" value="<?php echo set_value('duration'); ?>" />
-    <?php } ?>
-    
-    <div class="alert hide alert-error" id="lblCreditAlert" onclick="$('#lblCreditAlert').hide();">
+    <label for="viz_enddate"><?php echo lang('leaves_edit_field_end');?></label>
+    <input type="text" name="viz_enddate" id="viz_enddate" value="<?php $date = new DateTime($leave['enddate']); echo $date->format(lang('global_date_format'));?>" autocomplete="off" />
+    <input type="hidden" name="enddate" id="enddate" value="<?php echo $leave['enddate'];?>" />
+    <select name="enddatetype" id="enddatetype">
+        <option value="Morning" <?php if ($leave['enddatetype'] == "Morning") {echo "selected";}?>><?php echo lang('Morning');?></option>
+        <option value="Afternoon" <?php if ($leave['enddatetype'] == "Afternoon") {echo "selected";}?>><?php echo lang('Afternoon');?></option>
+    </select><br />
+
+        <label for="duration"><?php echo lang('leaves_edit_field_duration');?></label>
+        <?php if ($this->config->item('disable_edit_leave_duration') == TRUE) { ?>
+            <input type="text" name="duration" id="duration" value="<?php echo $leave['duration']; ?>" readonly />
+        <?php } else { ?>
+            <input type="text" name="duration" id="duration" value="<?php echo $leave['duration']; ?>" />
+        <?php } ?>
+
+
+        <?php if($selectedType !=  $this->config->item('leaveCancellationType')) { ?>
+        <div class="alert hide alert-error" id="lblCreditAlert" onclick="$('#lblCreditAlert').hide();">
         <button type="button" class="close">&times;</button>
-        <?php echo lang('leaves_create_field_duration_message');?>
+        <?php if($typeId !=  $this->config->item('leaveCancellationType')) echo lang('leaves_create_field_duration_message');?>
     </div>
-    
-    <div class="alert hide alert-error" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
+        <?php } ?>
+
+        <?php if($selectedType !=  $this->config->item('leaveCancellationType')) { ?>
+        <div class="alert hide alert-error" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
+        <?php } else { ?>
+        <div class="alert hide alert-info" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
+        <?php } ?>
         <button type="button" class="close">&times;</button>
         <?php echo lang('leaves_create_field_overlapping_message');?>
     </div>
@@ -68,7 +75,7 @@ echo form_open('leaves/create', $attributes) ?>
     </div>
     
     <label for="cause"><?php echo lang('leaves_create_field_cause');?></label>
-    <textarea name="cause"><?php echo set_value('cause'); ?></textarea>
+    <textarea name="cause"><?php echo $leave['cause']; ?></textarea>
     
     <label for="status"><?php echo lang('leaves_create_field_status');?></label>
     <select name="status">
@@ -165,5 +172,7 @@ $(function () {
     });
 });
 <?php }?>
+
 </script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/lms/leave.edit.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/lms/leave.edit.js" type="text/javascript"></script>
+   

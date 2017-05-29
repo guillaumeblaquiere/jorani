@@ -146,6 +146,7 @@ class Leaves extends CI_Controller
                 }
             } //Admin
         } //Current employee
+        $data['leaveCancellationType'] = $this->config->item('leaveCancellationType');
         $data['source'] = $source;
         $data['title'] = lang('leaves_view_html_title');
         if ($source == 'requests') {
@@ -168,10 +169,22 @@ class Leaves extends CI_Controller
      * Create a leave request
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
-    public function create()
+    public function create($id=null)
     {
         $this->auth->checkIfOperationIsAllowed('create_leaves');
         $data = getUserContext($this);
+        $leave = Array();
+        $leave['startdate']='';
+        $leave['startdatetype']='';
+        $leave['enddate']='';
+        $leave['enddatetype']='';
+        $leave['cause']='';
+        $leave['duration']='';
+        if($id!=null){
+            $leave = $this->leaves_model->getLeaves($id);
+            $leave['cause']='ANNULATION';
+        }
+        $data['leave'] = $leave;
         $this->load->helper('form');
         $this->load->library('form_validation');
         $data['title'] = lang('leaves_create_title');
@@ -192,6 +205,7 @@ class Leaves extends CI_Controller
             $data['defaultType'] = $leaveTypesDetails->defaultType;
             $data['credit'] = $leaveTypesDetails->credit;
             $data['types'] = $leaveTypesDetails->types;
+
             $this->load->view('templates/header', $data);
             $this->load->view('menu/index', $data);
             $this->load->view('leaves/create');

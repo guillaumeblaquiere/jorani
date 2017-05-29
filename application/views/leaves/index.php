@@ -84,6 +84,10 @@
                     <a href="<?php echo base_url();?>leaves/cancel/<?php echo $leaves_item['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_cancel');?>"><i class="fa fa-undo" style="color:black;"></i></a>
                     &nbsp;
                 <?php } ?>
+                <?php if ($show_cancel == false && $this->config->item('leaveCancellationType') != 'undefined' && $leaves_item['type']!=$this->config->item('leaveCancellationType')) { ?>
+                    <a href="<?php echo base_url();?>leaves/create/<?php echo $leaves_item['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_cancel');?>"><i class="fa fa-undo" style="color:black;"></i></a>
+                    &nbsp;
+                <?php } ?>
                 <a href="<?php echo base_url();?>leaves/leaves/<?php echo $leaves_item['id']; ?>" title="<?php echo lang('leaves_index_thead_tip_view');?>"><i class="icon-eye-open"></i></a>
                 <?php if ($this->config->item('enable_history') == TRUE) { ?>
                 &nbsp;

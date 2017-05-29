@@ -69,7 +69,7 @@ class Leaves_model extends CI_Model {
         $this->db->join('status', 'leaves.status = status.id');
         $this->db->join('types', 'leaves.type = types.id');
         $this->db->where('leaves.employee', $employee);
-        $this->db->where('(leaves.type not in ('.$list.') AND leaves.status=3) OR (leaves.status<>3 AND leaves.type in ('.$list.'))');
+        $this->db->where('((leaves.type not in ('.$list.') AND leaves.status=3) OR (leaves.status<>3))');
         $this->db->order_by('leaves.id', 'desc');
         return $this->db->get()->result_array();
     }
@@ -101,7 +101,7 @@ class Leaves_model extends CI_Model {
      * @author Benjamin BALET <benjamin.balet@gmail.com>
      */
     public function getAcceptedLeavesBetweenDates($employee, $start, $end) {
-        $this->db->select('leaves.*, types.name as type');
+        $this->db->select('leaves.*, types.name as type,types.id as typeid');
         $this->db->from('leaves');
         $this->db->join('status', 'leaves.status = status.id');
         $this->db->join('types', 'leaves.type = types.id');
@@ -576,7 +576,30 @@ class Leaves_model extends CI_Model {
             $this->history_model->setHistory(2, 'leaves', $id, $this->session->userdata('id'));
         }
     }
-    
+
+    /**
+     * Update leave start and end date and type
+     */
+    public function updateLeaveDates($id, $startDate,$startDateType, $endDate,$endDateType,$duration) {
+        $data = array(
+            'startdate' => $startDate,
+            'startdatetype' => $startDateType,
+            'enddate' => $endDate,
+            'enddatetype' => $endDateType,
+            'duration' => $duration
+        );
+        $this->db->where('id', $id);
+        $affectedRows = $this->db->update('leaves', $data);
+
+        //Trace the modification if the feature is enabled
+        if ($this->config->item('enable_history') == TRUE) {
+            $this->load->model('history_model');
+            $this->history_model->setHistory(2, 'leaves', $id, $this->session->userdata('id'));
+        }
+
+        return $affectedRows;
+    }
+
     /**
      * Accept a leave request
      * @param int $id leave request identifier

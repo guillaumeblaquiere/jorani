@@ -29,7 +29,7 @@ if (isset($_GET['source'])) {
     </label>
     <select class="input-xxlarge" name="type" id="type">
     <?php foreach ($types as $typeId => $TypeName): ?>
-        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $leave['type']) echo "selected"; ?>><?php echo $TypeName; ?></option>
+        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $leave['type']) { echo "selected"; $selectedType = $typeId;}?>><?php echo $TypeName; ?></option>
     <?php endforeach ?>    
     </select>
         
@@ -55,14 +55,20 @@ if (isset($_GET['source'])) {
     <?php } else { ?>
     <input type="text" name="duration" id="duration" value="<?php echo $leave['duration']; ?>" />
     <?php } ?>
-    
+
+        <?php if($selectedType !=  $this->config->item('leaveCancellationType')) { ?>
     <div class="alert hide alert-error" id="lblCreditAlert">
         <button type="button" class="close">&times;</button>
         <?php echo lang('leaves_edit_field_duration_message');?>
     </div>
-    
+        <?php } ?>
+
+        <?php if($selectedType !=  $this->config->item('leaveCancellationType')) { ?>
     <div class="alert hide alert-error" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
-        <button type="button" class="close">&times;</button>
+        <?php } else { ?>
+        <div class="alert hide alert-info" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
+        <?php } ?>
+            <button type="button" class="close">&times;</button>
         <?php echo lang('leaves_create_field_overlapping_message');?>
     </div>
     

@@ -533,6 +533,7 @@ $config['enable_history'] = FALSE;
 //Set the type of leave
 $config['leaveEtamType'] = 22;
 $config['leaveHollidayType'] = 1;
+$config['leaveCancellationType'] = 23;
 
 $config['listContactWithEtam'] = '2,3';
 

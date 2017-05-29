@@ -77,9 +77,18 @@ class Requests extends CI_Controller {
         $employee = $this->users_model->getUsers($leave['employee']);
         $is_delegate = $this->delegations_model->isDelegateOfManager($this->user_id, $employee['manager']);
         if (($this->user_id == $employee['manager']) || ($this->is_hr)  || ($is_delegate)) {
-            $this->leaves_model->acceptLeave($id);
+            if($leave['type']== $this->config->item('leaveCancellationType')) {
+                $this->processCancellation($employee,$leave);
+                $this->session->set_flashdata('msg', 'La demande d\'annulation de congés a bien été prise en compte.');
+            }else{
+                $this->leaves_model->acceptLeave($id);
+                $this->session->set_flashdata('msg', lang('requests_accept_flash_msg_success'));
+            }
             $this->sendMail($id);
-            $this->session->set_flashdata('msg', lang('requests_accept_flash_msg_success'));
+            if($leave['type']== $this->config->item('leaveCancellationType')) {
+                //delete the cancellation request
+                $this->leaves_model->deleteLeave($leave['id']);
+            }
             if (isset($_GET['source'])) {
                 redirect($_GET['source']);
             } else {
@@ -89,6 +98,120 @@ class Requests extends CI_Controller {
             log_message('error', 'User #' . $this->user_id . ' illegally tried to accept leave #' . $id);
             $this->session->set_flashdata('msg', lang('requests_accept_flash_msg_error'));
             redirect('leaves');
+        }
+    }
+
+    private function processCancellation($employee,$cancellationLeave){
+        $leaveArray = $this->leaves_model->getAcceptedLeavesBetweenDates($employee['id'],$cancellationLeave['startdate'],$cancellationLeave['enddate']);
+        $cancellationLeaveStartDate = new DateTime($cancellationLeave['startdate']);
+        $cancellationLeaveEndDate = new DateTime($cancellationLeave['enddate']);
+        foreach ($leaveArray as $leaveToCancel ){
+            $leaveToCancelStartDate = new DateTime($leaveToCancel['startdate']);
+            $leaveToCancelEndDate = new DateTime($leaveToCancel['enddate']);
+            if($leaveToCancelEndDate->getTimestamp()==$cancellationLeaveStartDate->getTimestamp() &&
+                $leaveToCancel['enddatetype']=='Morning' && $cancellationLeave['startdatetype']=='Afternoon'){
+                //No overlap with cancellation leave, we can continue
+                //log_message('error','no way leave, just side by side');
+                continue;
+            }
+            if($leaveToCancelStartDate->getTimestamp()==$cancellationLeaveEndDate->getTimestamp() &&
+                $leaveToCancel['startdatetype']=='Afternoon' && $cancellationLeave['enddatetype']=='Morning'){
+                //No overlap with cancellation leave, we can continue
+                //log_message('error','no way leave, just side by side');
+                continue;
+            }
+
+            if($leaveToCancelStartDate->getTimestamp()>=$cancellationLeaveStartDate->getTimestamp() &&
+                $leaveToCancelEndDate->getTimestamp()<=$cancellationLeaveEndDate->getTimestamp()){
+                //leave fully inside the cancellation. Delete it
+                //log_message('error','delete leave fully inside the cancellation');
+                $this->leaves_model->deleteLeave($leaveToCancel['id']);
+                continue;
+            }
+            //strict inclusion including morning/afternoon
+            if(($leaveToCancelStartDate->getTimestamp()<$cancellationLeaveStartDate->getTimestamp() ||
+                    ($leaveToCancelStartDate->getTimestamp()==$cancellationLeaveStartDate->getTimestamp() &&
+                        $leaveToCancel['startdatetype']=='Morning' &&
+                        $cancellationLeave['startdatetype']=='Afternoon')) &&
+                ($leaveToCancelEndDate->getTimestamp()>$cancellationLeaveEndDate->getTimestamp() ||
+                    ($leaveToCancelEndDate->getTimestamp()==$cancellationLeaveEndDate->getTimestamp() &&
+                        $leaveToCancel['enddatetype']=='Afternoon' &&
+                        $cancellationLeave['enddatetype']=='Morning' ))){
+                //Split the current leave
+                //reduce the leave before
+                //log_message('error','One leave to split');
+                $endDate = $cancellationLeaveStartDate;
+                $endDateType = 'Morning';
+                if($cancellationLeave['startdatetype'] == 'Morning'){
+                    //if cancellation start the morning, next leave start yesterday in the afternoon
+                    $endDateType = 'Afternoon';
+                    $endDate->modify('-1 day');
+                }
+                $duration = $this->calculateDuration($employee,$leaveToCancelStartDate->format('Y-m-d'),$leaveToCancel['startdatetype'],$endDate->format('Y-m-d'),$endDateType);
+                $this->leaves_model->updateLeaveDates($leaveToCancel['id'],$leaveToCancelStartDate->format('Y-m-d'),$leaveToCancel['startdatetype'],$endDate->format('Y-m-d'),$endDateType,$duration);
+
+                //create new leave after
+                $startDate = $cancellationLeaveEndDate;
+                $startDateType = 'Afternoon';
+                if($cancellationLeave['enddatetype'] == 'Afternoon'){
+                    //if cancellation end the afternoon, next leave start tomorrow in the morning
+                    $startDateType = 'Morning';
+                    $startDate->modify('+1 day');
+                }
+                $duration = $this->calculateDuration($employee,$startDate->format('Y-m-d'),$startDateType,$leaveToCancelEndDate->format('Y-m-d'),$leaveToCancel['enddatetype']);
+                $this->leaves_model->createLeaveByApi($startDate->format('Y-m-d'), $leaveToCancelEndDate->format('Y-m-d'), $leaveToCancel['status'], $employee['id'], $leaveToCancel['cause'],
+                    $startDateType, $leaveToCancel['enddatetype'], $duration, $leaveToCancel['typeid']);
+                continue;
+            }
+            if($leaveToCancelStartDate->getTimestamp()>=$cancellationLeaveStartDate->getTimestamp()){
+                //Change the leaveToCancel start date
+                //log_message('error','Change the leaveToCancel start date');
+                $startDate = $cancellationLeaveEndDate;
+                $startDateType = 'Afternoon';
+                if($cancellationLeave['enddatetype'] == 'Afternoon'){
+                    //if cancellation end the afternoon, next leave start tomorrow in the morning
+                    $startDateType = 'Morning';
+                    $startDate->modify('+1 day');
+                }
+                $duration = $this->calculateDuration($employee,$startDate->format('Y-m-d'),$startDateType,$leaveToCancelEndDate->format('Y-m-d'),$leaveToCancel['enddatetype']);
+                $this->leaves_model->updateLeaveDates($leaveToCancel['id'],$startDate->format('Y-m-d'),$startDateType,$leaveToCancelEndDate->format('Y-m-d'),$leaveToCancel['enddatetype'],$duration);
+                continue;
+            }
+            if($leaveToCancelEndDate->getTimestamp()<=$cancellationLeaveEndDate->getTimestamp()){
+                //Change the leaveToCancel enddate
+                //log_message('error','Change the leaveToCancel enddate');
+                $endDate = $cancellationLeaveStartDate;
+                $endDateType = 'Morning';
+                if($cancellationLeave['startdatetype'] == 'Morning'){
+                    //if cancellation start the morning, next leave start yesterday in the afternoon
+                    $endDateType = 'Afternoon';
+                    $endDate->modify('-1 day');
+                }
+                $duration = $this->calculateDuration($employee,$leaveToCancelStartDate->format('Y-m-d'),$leaveToCancel['startdatetype'],$endDate->format('Y-m-d'),$endDateType);
+                $this->leaves_model->updateLeaveDates($leaveToCancel['id'],$leaveToCancelStartDate->format('Y-m-d'),$leaveToCancel['startdatetype'],$endDate->format('Y-m-d'),$endDateType,$duration);
+                continue;
+            }
+        }
+    }
+    /**
+     * Return the duration leave for an employee (according with its agenda)
+     */
+    private function calculateDuration($employee,$startdate,  $startdatetype, $enddate,$enddatetype){
+        $this->load->model('contracts_model');
+        $valueNull1 = null;
+        $valueNull2 = null;
+        $hasContract = $this->contracts_model->getBoundaries($employee['id'], $valueNull1, $valueNull2);
+        //Add non working days between the two dates (including their type: morning, afternoon and all day)
+        if (isset($employee['id']) && ($startdate != '') && ($enddate != '') && $hasContract === TRUE) {
+            $this->load->model('dayoffs_model');
+            $listDaysOff = $this->dayoffs_model->listOfDaysOffBetweenDates($employee['id'], $startdate, $enddate);
+            //Sum non-working days and overlapping with day off detection
+            $result = $this->leaves_model->actualLengthAndDaysOff($employee['id'], $startdate, $enddate, $startdatetype, $enddatetype, $listDaysOff);
+            return $result['length'];
+        }
+//If the user has no contract, simply compute a date difference between start and end dates
+        if (isset($employee['id']) && isset($startdate) && isset($enddate) && $hasContract === FALSE) {
+            return $this->leaves_model->length($employee['id'], $startdate, $enddate, $startdatetype, $enddatetype);
         }
     }
 

@@ -177,6 +177,7 @@ $route['contracts/public/calendar/alldayoffs'] = 'calendar/publicDayoffs';
 $route['leaves/counters'] = 'leaves/counters';
 $route['leaves/counters/(:num)'] = 'leaves/counters/$1';
 $route['leaves/export'] = 'leaves/export';
+$route['leaves/create/(:num)'] = 'leaves/create/$1';
 $route['leaves/create'] = 'leaves/create';
 $route['leaves/edit/(:num)'] = 'leaves/edit/$1';
 $route['leaves/printPdf/(:num)'] = 'leaves/printPdf/$1';
