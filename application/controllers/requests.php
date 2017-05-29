@@ -442,15 +442,18 @@ class Requests extends CI_Controller {
         );
 
         $tmpfile=null;
-        if ($leave['status'] == 3) {    //accepted
+        if ($leave['status'] == 3 || $leave['type'] == $this->config->item('leaveCancellationType')) {    //accepted
             $message = $this->parser->parse('emails/' . $employee['language'] . '/request_accepted', $data, TRUE);
             $subject = $lang_mail->line('email_leave_request_accept_subject');
             //TODO add iCal
-            $tmpfile = sys_get_temp_dir ()."/joraniTmp_".$id.$leave['startdate'].'.vcs';
+            $tmpfile = null;
+            if($leave['type'] = $this->config->item('leaveCancellationType')){
+                $tmpfile = sys_get_temp_dir ()."/joraniTmp_".$id.$leave['startdate'].'.vcs';
 
-            $handle = fopen($tmpfile, "w");
-            fwrite($handle, $this->ical($id));
-            fclose($handle);
+                $handle = fopen($tmpfile, "w");
+                fwrite($handle, $this->ical($id));
+                fclose($handle);
+            }
 
         } else {    //rejected
             $message = $this->parser->parse('emails/' . $employee['language'] . '/request_rejected', $data, TRUE);
@@ -458,7 +461,7 @@ class Requests extends CI_Controller {
         }
         sendMailByWrapper($this, $subject, $message, $employee['email'], is_null($supervisor)?NULL:$supervisor->email,$tmpfile);
 
-        if ($leave['status'] == 3) {    //accepted
+        if ($leave['status'] == 3 && $leave['type'] != $this->config->item('leaveCancellationType')) {    //accepted
             unlink($tmpfile);
         }
     }
