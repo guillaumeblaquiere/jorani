@@ -36,7 +36,15 @@ class Entitleddays_model extends CI_Model {
         $this->db->where('contract =', $contract);
         return $this->db->get()->result_array();
     }
-    
+
+    public function getEntitledDaysbyId($id) {
+        $this->db->select('entitleddays.*, types.name as type_name');
+        $this->db->from('entitleddays');
+        $this->db->join('types', 'types.id = entitleddays.type');
+        $this->db->where('entitleddays.id', $id);
+        return $this->db->get()->row_array();
+    }
+
     /**
      * Get the list of entitled days or one entitled day record associated to an employee
      * @param int $id optional id of an employee

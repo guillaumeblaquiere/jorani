@@ -232,6 +232,7 @@ if ($language_code != 'en') { ?>
                         days: parseFloat($('#days').val()),
                         type: $("#type").val(),
                         description: $("#description").val(),
+                        context:"contract",
                     }
           })
    
@@ -270,7 +271,8 @@ if ($language_code != 'en') { ?>
                             type: "POST",
                 data: { id: id,
                         operation: operation,
-                        days: step
+                        days: step,
+                        context:"contract",
                     }
           }).done(function() {
               var days = parseFloat($('#days' + id).text());

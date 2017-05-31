@@ -103,6 +103,7 @@ class Entitleddays extends CI_Controller {
     public function userdelete($id) {
         $this->auth->checkIfOperationIsAllowed('entitleddays_user_delete');
         $this->output->set_content_type('text/plain');
+        $this->sendMail($id,true,'delete');
         echo $this->entitleddays_model->deleteEntitledDays($id);
     }
     
@@ -115,6 +116,7 @@ class Entitleddays extends CI_Controller {
     public function contractdelete($id) {
         $this->auth->checkIfOperationIsAllowed('entitleddays_contract_delete');
         $this->output->set_content_type('text/plain');
+        $this->sendMail($id,false,'delete');
         echo $this->entitleddays_model->deleteEntitledDays($id);
     }
     
@@ -135,6 +137,7 @@ class Entitleddays extends CI_Controller {
             if (isset($startdate) && isset($enddate) && isset($days) && isset($type) && isset($user_id)) {
                 $this->output->set_content_type('text/plain');
                 $id = $this->entitleddays_model->addEntitledDaysToEmployee($user_id, $startdate, $enddate, $days, $type, $description);
+                $this->sendMail($id,true,'create');
                 echo $id;
             } else {
                 $this->output->set_header("HTTP/1.1 422 Unprocessable entity");
@@ -159,6 +162,7 @@ class Entitleddays extends CI_Controller {
             if (isset($startdate) && isset($enddate) && isset($days) && isset($type) && isset($contract_id)) {
                 $this->output->set_content_type('text/plain');
                 $id = $this->entitleddays_model->addEntitledDaysToContract($contract_id, $startdate, $enddate, $days, $type, $description);
+                $this->sendMail($id,false,'create');
                 echo $id;
             } else {
                 $this->output->set_header("HTTP/1.1 422 Unprocessable entity");
@@ -179,27 +183,34 @@ class Entitleddays extends CI_Controller {
         if ($this->auth->isAllowed('entitleddays_user') == FALSE) {
             $this->output->set_header("HTTP/1.1 403 Forbidden");
         } else {
-            $id = $this->input->post('id', TRUE);
-            $operation = $this->input->post('operation', TRUE);   
-            if (isset($id) && isset($operation)) {
+            $idEntitledDay = $this->input->post('id', TRUE);
+            $operation = $this->input->post('operation', TRUE);
+            $context = $this->input->post('context', TRUE);
+            if (isset($context) && isset($idEntitledDay) && isset($operation)) {
+                $forEmployee = true;
+                if($context=='contract') $forEmployee=false;
                 $this->output->set_content_type('text/plain');
                 $days = $this->input->post('days', TRUE);
                 switch ($operation) {
                     case  "increase":
-                        $id = $this->entitleddays_model->increase($id, $days);
+                        $id = $this->entitleddays_model->increase($idEntitledDay, $days);
+                        $this->sendMail($idEntitledDay,$forEmployee,'update');
                         break;
                     case "decrease":
-                        $id = $this->entitleddays_model->decrease($id, $days);
+                        $id = $this->entitleddays_model->decrease($idEntitledDay, $days);
+                        $this->sendMail($idEntitledDay,$forEmployee,'update');
                         break;
                     case "credit":
-                        $id = $this->entitleddays_model->updateNbOfDaysOfEntitledDaysRecord($id, $days);
+                        $id = $this->entitleddays_model->updateNbOfDaysOfEntitledDaysRecord($idEntitledDay, $days);
+                        $this->sendMail($idEntitledDay,$forEmployee,'update');
                         break;
                     case "update":
                         $startdate = $this->input->post('startdate', TRUE);
                         $enddate = $this->input->post('enddate', TRUE);
                         $type = $this->input->post('type', TRUE);
                         $description = sanitize($this->input->post('description', TRUE));
-                        $id = $this->entitleddays_model->updateEntitledDays($id, $startdate, $enddate, $days, $type, $description);
+                        $id = $this->entitleddays_model->updateEntitledDays($idEntitledDay, $startdate, $enddate, $days, $type, $description);
+                        $this->sendMail($idEntitledDay,$forEmployee,'update');
                         break;
                     default:
                         $this->output->set_header("HTTP/1.1 422 Unprocessable entity");
@@ -211,4 +222,71 @@ class Entitleddays extends CI_Controller {
         }
     }
 
+    /**
+     * @param $id
+     * @param $forEmployee : boolean. True if it's for employee, false if it's for contracts
+     */
+    private function sendMail($id,$forEmployee,$action)
+    {
+        $entitleDay = $this->entitleddays_model->getEntitledDaysbyId($id);
+        $to='';
+        $c='';
+        $this->load->model('users_model');
+        $this->load->model('organization_model');
+        if($forEmployee){
+            $user =$this->users_model->getUsers($entitleDay['employee']);
+            $to = $user['email'];
+        } else {
+            $userList = $this->users_model->getAllEmployeesByContractId($entitleDay['contract']);
+            foreach ($userList as $user){
+                if($to == '')$to .= $user['email'];
+                else $to .= ','.$user['email'];
+            }
+        }
+
+
+        $usr_lang ='french';
+        $this->load->library('email');
+        $lang_mail = new CI_Lang();
+
+        $lang_mail->load('email', $usr_lang);
+        $lang_mail->load('global', $usr_lang);
+
+        $date = new DateTime($entitleDay['startdate']);
+        $startdate = $date->format($lang_mail->line('global_date_format'));
+        $date = new DateTime($entitleDay['enddate']);
+        $enddate = $date->format($lang_mail->line('global_date_format'));
+
+        $title = '';
+        $emailBody = 'emails/fr';
+        if($action == 'create'){
+            $title='Un nouveau crédit de congés vous a été créé';
+            $emailBody.= '/entitledays_create';
+        }
+        if($action == 'update'){
+            $title='Un de vos crédits congés a été modifié';
+            $emailBody.= '/entitledays_update';
+        }
+        if($action == 'delete'){
+            $title='un de vos crédits de congés a été supprimé';
+            $emailBody.= '/entitledays_delete';
+        }
+
+        $this->load->library('parser');
+        $data = array(
+            'Title' => $title,
+            'StartDate' => $startdate,
+            'EndDate' => $enddate,
+            'Description' => $entitleDay['description'],
+            'Type' => $entitleDay['type_name'],
+            'Day' => $entitleDay['days']
+        );
+
+        log_message('error',$to);
+        $message = $this->parser->parse($emailBody, $data, TRUE);
+        $subject = $title;
+
+
+        sendMailByWrapper($this, $subject, $message, $to, $c,null);
+    }
 }

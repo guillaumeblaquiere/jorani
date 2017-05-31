@@ -39,7 +39,7 @@ class Users_model extends CI_Model {
         $query = $this->db->get_where('users', array('users.id' => $id));
         return $query->row_array();
     }
-    
+
     /**
      * Get the list of employees
      * @return array record of users
@@ -50,7 +50,18 @@ class Users_model extends CI_Model {
         $query = $this->db->get('users');
         return $query->result_array();
     }
-    
+
+    /**
+     * Get the list of employees for a contractId
+     * @return array record of users
+     */
+    public function getAllEmployeesByContractId($contractId) {
+        $this->db->select('users.*');
+        $this->db->where('contract', $contractId);
+        $query = $this->db->get('users');
+        return $query->result_array();
+    }
+
     /**
      * Get the name of a given user
      * @param int $id Identifier of employee
