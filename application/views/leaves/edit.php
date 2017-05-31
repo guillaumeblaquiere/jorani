@@ -180,13 +180,16 @@ $(function () {
     $('#type').selectize();
 
     $('#type').change(function() {
-        if($("#type option:selected").val() == <?php echo $this->config->item('leaveCancellationType')?>){
-            $('#lblCreditAlert').css("visibility", "hidden").css("display", "inline");
-            $('#lblOverlappingAlert').removeClass("alert-error").addClass("alert-info");
-        } else {
-            $('#lblCreditAlert').css("visibility", "visible").css("display", "block");
-            $('#lblOverlappingAlert').removeClass("alert-info").addClass("alert-error");
-        }})
+        if ($('#duration').val() != "") {
+            if ($("#type option:selected").val() == <?php echo $this->config->item('leaveCancellationType')?>) {
+                $('#lblCreditAlert').css("visibility", "hidden").css("display", "inline");
+                $('#lblOverlappingAlert').removeClass("alert-error").addClass("alert-info");
+            } else {
+                $('#lblCreditAlert').css("visibility", "visible").css("display", "block");
+                $('#lblOverlappingAlert').removeClass("alert-info").addClass("alert-error");
+            }
+        }
+    })
 
     //On opening, refresh leave request information
     refreshLeaveInfo();

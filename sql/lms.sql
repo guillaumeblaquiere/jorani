@@ -43,6 +43,7 @@ DELIMITER ;
 
 DROP FUNCTION IF EXISTS `GetFamilyTree`;
 DELIMITER $$
+
 CREATE FUNCTION `GetFamilyTree`(`GivenID` INT) RETURNS varchar(1024) CHARSET utf8
     NOT DETERMINISTIC
     READS SQL DATA
@@ -50,14 +51,20 @@ CREATE FUNCTION `GetFamilyTree`(`GivenID` INT) RETURNS varchar(1024) CHARSET utf
 BEGIN
 
     DECLARE rv,q,queue,queue_children VARCHAR(1024);
-    DECLARE queue_length,front_id,pos INT;
+    DECLARE queue_length,front_id,pos,poss INT;
 
     SET rv = '';
     SET queue = GivenID;
     SET queue_length = 1;
 
     WHILE queue_length > 0 DO
-        SET front_id = FORMAT(queue,0);
+        SET poss = LOCATE(',',queue) -1;
+        IF poss <= 0 then
+            SET front_id = FORMAT(queue,0);
+            ELSE
+            SET front_id = SUBSTR(queue,1,poss);
+            end if;
+
         IF queue_length = 1 THEN
             SET queue = '';
         ELSE
@@ -65,6 +72,7 @@ BEGIN
             SET q = SUBSTR(queue,pos);
             SET queue = q;
         END IF;
+
         SET queue_length = queue_length - 1;
 
         SELECT IFNULL(qc,'') INTO queue_children
