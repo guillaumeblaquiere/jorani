@@ -29,7 +29,7 @@ if (isset($_GET['source'])) {
     </label>
     <select class="input-xxlarge" name="type" id="type">
     <?php foreach ($types as $typeId => $TypeName): ?>
-        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $leave['type']) { echo "selected"; $selectedType = $typeId;}?>><?php echo $TypeName; ?></option>
+        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $leave['type']) { echo "selected";}?>><?php echo $TypeName; ?></option>
     <?php endforeach ?>    
     </select>
         
@@ -56,18 +56,12 @@ if (isset($_GET['source'])) {
     <input type="text" name="duration" id="duration" value="<?php echo $leave['duration']; ?>" />
     <?php } ?>
 
-        <?php if($selectedType !=  $this->config->item('leaveCancellationType')) { ?>
     <div class="alert hide alert-error" id="lblCreditAlert">
         <button type="button" class="close">&times;</button>
         <?php echo lang('leaves_edit_field_duration_message');?>
     </div>
-        <?php } ?>
 
-        <?php if($selectedType !=  $this->config->item('leaveCancellationType')) { ?>
     <div class="alert hide alert-error" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
-        <?php } else { ?>
-        <div class="alert hide alert-info" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
-        <?php } ?>
             <button type="button" class="close">&times;</button>
         <?php echo lang('leaves_create_field_overlapping_message');?>
     </div>
@@ -184,9 +178,19 @@ $(function () {
 $(function () {
     //Selectize the leave type combo
     $('#type').selectize();
-    
+
+    $('#type').change(function() {
+        if($("#type option:selected").val() == <?php echo $this->config->item('leaveCancellationType')?>){
+            $('#lblCreditAlert').css("visibility", "hidden").css("display", "inline");
+            $('#lblOverlappingAlert').removeClass("alert-error").addClass("alert-info");
+        } else {
+            $('#lblCreditAlert').css("visibility", "visible").css("display", "block");
+            $('#lblOverlappingAlert').removeClass("alert-info").addClass("alert-error");
+        }})
+
     //On opening, refresh leave request information
     refreshLeaveInfo();
+    $('#type').change();
 });
 
 </script>

@@ -25,12 +25,12 @@ echo form_open('leaves/create', $attributes) ?>
     </label>
     <select class="input-xxlarge" name="type" id="type">
     <?php foreach ($types as $typeId => $TypeName): ?>
-        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $this->config->item('leaveCancellationType')) { echo "selected"; $selectedType = $typeId;}?>><?php echo $TypeName; ?></option>
+        <option value="<?php echo $typeId; ?>" <?php if ($typeId == $leave['type']) { echo "selected";}?>><?php echo $TypeName; ?></option>
     <?php endforeach ?>
     </select>
         
     <label for="viz_startdate"><?php echo lang('leaves_edit_field_start');?></label>
-    <input type="text" name="viz_startdate" id="viz_startdate" value="<?php $date = new DateTime($leave['startdate']); echo $date->format(lang('global_date_format'));?>" autocomplete="off" />
+    <input type="text" name="viz_startdate" id="viz_startdate" value="<?php if($leave['startdate']!=null) {$date = new DateTime($leave['startdate']); echo $date->format(lang('global_date_format'));}?>" autocomplete="off" />
     <input type="hidden" name="startdate" id="startdate" value="<?php echo $leave['startdate'];?>" />
     <select name="startdatetype" id="startdatetype">
         <option value="Morning" <?php if ($leave['startdatetype'] == "Morning") {echo "selected";}?>><?php echo lang('Morning');?></option>
@@ -38,7 +38,7 @@ echo form_open('leaves/create', $attributes) ?>
     </select><br />
 
     <label for="viz_enddate"><?php echo lang('leaves_edit_field_end');?></label>
-    <input type="text" name="viz_enddate" id="viz_enddate" value="<?php $date = new DateTime($leave['enddate']); echo $date->format(lang('global_date_format'));?>" autocomplete="off" />
+    <input type="text" name="viz_enddate" id="viz_enddate" value="<?php if ($leave['enddate']!=null){$date = new DateTime($leave['enddate']); echo $date->format(lang('global_date_format'));}?>" autocomplete="off" />
     <input type="hidden" name="enddate" id="enddate" value="<?php echo $leave['enddate'];?>" />
     <select name="enddatetype" id="enddatetype">
         <option value="Morning" <?php if ($leave['enddatetype'] == "Morning") {echo "selected";}?>><?php echo lang('Morning');?></option>
@@ -53,18 +53,13 @@ echo form_open('leaves/create', $attributes) ?>
         <?php } ?>
 
 
-        <?php if($selectedType !=  $this->config->item('leaveCancellationType')) { ?>
         <div class="alert hide alert-error" id="lblCreditAlert" onclick="$('#lblCreditAlert').hide();">
         <button type="button" class="close">&times;</button>
-        <?php if($typeId !=  $this->config->item('leaveCancellationType')) echo lang('leaves_create_field_duration_message');?>
+        <?php echo lang('leaves_create_field_duration_message');?>
     </div>
-        <?php } ?>
 
-        <?php if($selectedType !=  $this->config->item('leaveCancellationType')) { ?>
+
         <div class="alert hide alert-error" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
-        <?php } else { ?>
-        <div class="alert hide alert-info" id="lblOverlappingAlert" onclick="$('#lblOverlappingAlert').hide();">
-        <?php } ?>
         <button type="button" class="close">&times;</button>
         <?php echo lang('leaves_create_field_overlapping_message');?>
     </div>
@@ -161,6 +156,15 @@ function validate_form() {
 $(function () {
     //Selectize the leave type combo
     $('#type').selectize();
+    $('#type').change(function() {
+        if($("#type option:selected").val() == <?php echo $this->config->item('leaveCancellationType')?>){
+            $('#lblCreditAlert').css("visibility", "hidden").css("display", "inline");
+            $('#lblOverlappingAlert').removeClass("alert-error").addClass("alert-info");
+        } else {
+            $('#lblCreditAlert').css("visibility", "visible").css("display", "block");
+            $('#lblOverlappingAlert').removeClass("alert-info").addClass("alert-error");
+        }})
+    $('#type').change();
 });
 
 <?php if ($this->config->item('csrf_protection') == TRUE) {?>

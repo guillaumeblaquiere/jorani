@@ -174,15 +174,17 @@ class Leaves extends CI_Controller
         $this->auth->checkIfOperationIsAllowed('create_leaves');
         $data = getUserContext($this);
         $leave = Array();
-        $leave['startdate']='';
-        $leave['startdatetype']='';
-        $leave['enddate']='';
-        $leave['enddatetype']='';
-        $leave['cause']='';
-        $leave['duration']='';
-        if($id!=null){
+        $leave['startdate']=null;
+        $leave['startdatetype']=null;
+        $leave['enddate']=null;
+        $leave['enddatetype']=null;
+        $leave['cause']=null;
+        $leave['type']=$this->config->item('default_leave_type');
+        $leave['duration']=null;
+        if($id!=null && $id!=''){
             $leave = $this->leaves_model->getLeaves($id);
             $leave['cause']='ANNULATION';
+            $leave['type']=$this->config->item('leaveCancellationType');
         }
         $data['leave'] = $leave;
         $this->load->helper('form');
