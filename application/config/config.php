@@ -461,7 +461,7 @@ $config['ga_send_userid'] = FALSE;
 
 //____________________________________________________________________________
 //LDAP configuration
-$config['ldap_enabled'] = true;
+$config['ldap_enabled'] = false;
 $config['ldap_host'] = 'localhost';
 $config['ldap_port'] = 389;
 $config['ldap_basedn'] = 'ou=people,dc=hrsys,dc=fr';
