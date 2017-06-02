@@ -461,10 +461,11 @@ $config['ga_send_userid'] = FALSE;
 
 //____________________________________________________________________________
 //LDAP configuration
-$config['ldap_enabled'] = false;
+$config['ldap_enabled'] = true;
 $config['ldap_host'] = 'localhost';
 $config['ldap_port'] = 389;
-$config['ldap_basedn'] = 'uid=%s,ou=people,dc=hrsys,dc=fr';  //Change the pattern, but let %s that symbolizes the user identifier
+$config['ldap_basedn'] = 'ou=people,dc=hrsys,dc=fr';
+$config['ldap_filter'] = '(mail=%s)';  //Change the pattern, but let %s that symbolizes the user identifier
 $config['ldap_basedn_db'] = FALSE;      //If TRUE, ldap path is taken from user table
 
 //____________________________________________________________________________

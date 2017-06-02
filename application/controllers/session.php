@@ -125,13 +125,16 @@ class Session extends CI_Controller {
                 if ($password != "") { //Bind to MS-AD with blank password might return OK
                 $ldap = ldap_connect($this->config->item('ldap_host'), $this->config->item('ldap_port'));
                 ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
+
                 set_error_handler(function() { /* ignore errors */ });
                 //Priority is given to the base DN defined into the database, then try with the template
                 $basedn = $this->users_model->getBaseDN($this->input->post('login'));
                 if ($basedn == "") {//can return NULL
                     $basedn = sprintf($this->config->item('ldap_basedn'), $this->input->post('login'));
                 }
-                $bind = ldap_bind($ldap, $basedn, $password);
+                    $sr=ldap_search($ldap, $this->config->item('ldap_basedn'), sprintf($this->config->item('ldap_filter'), $this->input->post('login')),['dn']);
+                    $info = ldap_get_entries($ldap, $sr);
+                    $bind = ldap_bind($ldap, $info[0]['dn'], $password);
                 restore_error_handler();
                 if ($bind) {
                     $loggedin = $this->users_model->checkCredentialsLDAP($this->input->post('login'));

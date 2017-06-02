@@ -875,8 +875,8 @@ class Leaves extends CI_Controller
         $balance = $this->leaves_model->getLeavesTypeBalanceForEmployee($userId, $this->types_model->getName($leaveHollidayType), $year.'-05-31');
         if($balance < 0){
             $this->load->model('entitleddays_model');
-            $this->entitleddays_model->addEntitledDaysToEmployee($userId, $year.'-06-01', ($year+1).'-05-31', $balance, $leaveHollidayType, 'Congés anticipé '.$year-1);
-            $this->entitleddays_model->addEntitledDaysToEmployee($userId, ($year-1).'-06-01', ($year).'-05-31', $balance*-1, $leaveHollidayType, 'Régul congés anticipé '.$year-1);
+            $this->entitleddays_model->addEntitledDaysToEmployee($userId, $year.'-06-01', ($year+1).'-05-31', $balance, $leaveHollidayType, 'Congés anticipé '.($year-1));
+            $this->entitleddays_model->addEntitledDaysToEmployee($userId, ($year-1).'-06-01', ($year).'-05-31', $balance*-1, $leaveHollidayType, 'Régul congés anticipé '.($year-1));
         }
     }
 
